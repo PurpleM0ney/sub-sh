@@ -16,7 +16,8 @@ if [ -f ./latest ]; then
      rm ./sub/$DAEMON_VERSION
       if [ -f ./sub/$FILE_NAME ]; then
         chmod +x ./sub/$FILE_NAME
-        echo -e "/n/n${GREEN}Version $FILE_NAME successfully installed"
+        echo ""
+        echo -e "${GREEN}Version $FILE_NAME successfully installed"
         echo -e "\033[0m"
         ./sub/./$FILE_NAME farm
       fi
