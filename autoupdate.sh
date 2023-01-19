@@ -11,10 +11,9 @@ if [ -f ./latest ]; then
    if [ $DAEMON_VERSION != $LATEST_TAG ]; then
      FILE_NAME=$LATEST_TAG
      curl -JL -o ./sub/$FILE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "./latest")
-     sleep 5
+     cd sub
       if [ -f $FILE_NAME ]; then
         chmod +x $FILE_NAME
-        cd sub
         ./$FILE_NAME farm
       fi
    fi
