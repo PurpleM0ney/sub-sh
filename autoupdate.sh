@@ -9,9 +9,9 @@ if [ -f ./latest ]; then
    LATEST_TAG=subspace-cli-ubuntu-x86_64-$LATEST_TAG
    if [ -z $DAEMON_VERSION ]; then DAEMON_VERSION="new"; fi
    if [ $DAEMON_VERSION != $LATEST_TAG ]; then
-     FILE_NAME=subspace-cli-ubuntu-x86_64-$LATEST_TAG
+     FILE_NAME=$LATEST_TAG
      curl -JL -o ./sub/$FILE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "./latest")
-     sleep 1
+     sleep 5
       if [ -f $FILE_NAME ]; then
         chmod +x $FILE_NAME
         cd sub
