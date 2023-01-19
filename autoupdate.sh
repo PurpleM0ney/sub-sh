@@ -19,7 +19,7 @@ if [ -f ./latest ]; then
         echo ""
         CUR_VER=$FILE_NAME
         CUR_VER=${CUR_VER//v/}
-        echo -e "${GREEN}Version $FILE_NAME successfully installed"
+        echo -e "${GREEN}Version $CUR_VER successfully installed"
         echo -e "\033[0m"
         ./sub/./$FILE_NAME farm
       fi
