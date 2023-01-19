@@ -11,13 +11,8 @@ if [ -f ./latest ]; then
    if [ $DAEMON_VERSION != $LATEST_TAG ]; then
      FILE_NAME=subspace-cli-ubuntu-x86_64-$LATEST_TAG
      curl -JL -o ./sub/$FILE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "./latest")
-      #if [ -f $FILE_NAME ]; then
-        # chmod +x $FILE_NAME
-        # pKILL=$(pwdx $(ps -e | grep idena | awk '{print $1 }') | grep /root)
-         #pKILL=$(echo $pKILL | awk '{print $1}' | sed s/.$//)
-         #if [ ! -z pKILL ]; then systemctl stop idena.service; fi
-         #mv $FILE_NAME /root/idena/idena-go
-         #systemctl start idena.service
-      #fi
+      if [ -f $FILE_NAME ]; then
+        chmod +x $FILE_NAME
+      fi
    fi
 fi
