@@ -2,7 +2,7 @@
 
 DAEMON_FILE='subspace'
 RELEASES_PATH="https://github.com/subspace/subspace-cli/releases/download"
-FILE_NAME="subspace-cli-ubuntu-x86_"
+FILE_NAME="subspace-cli"
 NODE_DIR='subspace'
 SCRIPT_DIR='subspace-scripts'
 SCRIPT_NAME='subspace_update.sh'
