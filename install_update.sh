@@ -43,8 +43,4 @@ if [ -f ./latest ]; then
 fi
 
 rm latest*
-if [! -z $FILE_NAME ]; then 
-        ./sub/./$DAEMON_VERSION farm 
-else 
-        ./sub/./$FILE_NAME farm 
-fi
+
