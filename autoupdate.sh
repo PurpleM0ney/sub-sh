@@ -1,12 +1,19 @@
 #!/bin/bash
+
+#color
+BLUE="\033[0;34m"
+YELLOW="\033[0;33m"
+CYAN="\033[0;36m"
 PURPLE="\033[0;35m"
+RED='\033[0;31m'
+GREEN="\033[0;32m"
+NC='\033[0m'
+MAG='\e[1;35m'
 
 wget https://api.github.com/repos/subspace/subspace-cli/releases/latest
 if [ -f ./latest ]; then
    LATEST_TAG=$(jq --raw-output '.tag_name' "./latest")
    DAEMON_VERSION=$(ls ~/subspace-sh/sub/)
-   CURRENTLY_VER=$DAEMON_VERSION
-   echo "${PURPLE}Current version of the node - $CURRENTLY_VER"
    LATEST_TAG=subspace-cli-ubuntu-x86_64-$LATEST_TAG
    if [ -z $DAEMON_VERSION ]; then DAEMON_VERSION="new"; fi
    if [ $DAEMON_VERSION != $LATEST_TAG ]; then
@@ -15,7 +22,7 @@ if [ -f ./latest ]; then
      rm ./sub/$DAEMON_VERSION
       if [ -f ./sub/$FILE_NAME ]; then
         chmod +x ./sub/$FILE_NAME
-        echo "${PURPLE}Version $CURRENTLY_VER installed, start the farmer"
+        echo -n -e "${PURPLE}Version $FILE_NAME successfully installed, start the farmer"
         ./sub/./$FILE_NAME farm
       fi
    fi
