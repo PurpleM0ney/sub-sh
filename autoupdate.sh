@@ -2,9 +2,10 @@
 
 FILE_NAME="subspace"
 
-wget https://api.github.com/repos/idena-network/idena-go/releases/latest
+wgethttps://api.github.com/repos/subspace/subspace-cli/releases/latest
 if [ -f ./latest ]; then
    LATEST_TAG=$(jq --raw-output '.tag_name' "./latest")
+   echo LATEST_TAG
    LATEST_TAG=${LATEST_TAG//v/}
    DAEMON_VERSION=$(/root/idena/idena-go -v | awk '{print $3}')
    if [ -z $DAEMON_VERSION ]; then DAEMON_VERSION="new"; fi
