@@ -16,7 +16,8 @@ if [ -f ./latest ]; then
      rm ./sub/$DAEMON_VERSION
       if [ -f ./sub/$FILE_NAME ]; then
         chmod +x ./sub/$FILE_NAME
-        echo -e "${GREEN}Version $FILE_NAME successfully installed"
+        CUR_VER=${FILE_NAME//subspace-cli-ubuntu-x86_64-/}
+        echo -e "${GREEN}Version $CUR_VER successfully installed"
         echo -e "\033[0m"
       fi
    fi
