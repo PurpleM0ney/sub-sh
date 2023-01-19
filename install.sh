@@ -41,6 +41,30 @@ elif type yum; then
       sudo yum install -y jq curl unzip wget
 fi
 
-wget https://github.com/subspace/subspace-cli/releases/download/v0.1.3-alpha/subspace-cli-Ubuntu-x86_64-v0.1.3-alpha
-sleep 2;
-./subspace-cli-ubuntu-x86_64-v0.1.3-alpha init
+echo -e "${GREEN}Downloading SubSpace node...${NC}" 
+if [ -d $HOMEFOLDER/$NODE_DIR/datadir/ipfs ]; then rm -rf $HOMEFOLDER/$NODE_DIR/datadir/ipfs; fi
+bash autoupdate.sh
+sudo bash $HOMEFOLDER/$SCRIPT_DIR/$SCRIPT_NAME
+
+if [ ! -f $HOMEFOLDER/$NODE_DIR/$DAEMON_FILE ]; then
+        echo -e "${RED}Latest release not found, downloading previous ...${NC}"
+        cd $HOMEFOLDER/$SCRIPT_DIR/$DAEMON_FILE
+        LATEST_TAG=$(git tag --sort=-creatordate | head -2 | sed '1d')
+        LATEST_TAG=${LATEST_TAG//v/}
+        FILE_NAME+=$LATEST_TAG
+        sudo wget  "$RELEASES_PATH/v$LATEST_TAG/$FILE_NAME"
+        sudo chmod +x $FILE_NAME
+        sudo mv $FILE_NAME $HOMEFOLDER/$NODE_DIR/$DAEMON_FILE
+        cd $HOMEFOLDER
+fi
+
+echo -n -e "${YELLOW}Do you want enable node autoupdate script? [Y,n]:${NC}"
+read ANSWER
+if [ -z $ANSWER ] || [ $ANSWER = 'Y' ] || [ $ANSWER = 'y' ]; then
+  if [[ -z $(sudo -u root crontab -l | grep "$HOMEFOLDER/$SCRIPT_PATH/$SCRIPT_NAME") ]]; then
+        sudo -u root crontab -l > cron
+        echo -e "0 */1 * * * $HOMEFOLDER/$SCRIPT_PATH/$SCRIPT_NAME >/dev/null 2>&1" >> cron
+        sudo -u root crontab cron
+        rm cron
+  fi
+fi
