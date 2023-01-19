@@ -1,8 +1,25 @@
 #!/bin/bash
 
+#names
+SCRIPT_NAME="autoupdate.sh"
+SCRIPT_PATH="subspace-scripts"
+
 #color
 GREEN="\033[0;32m"
 DEFAULT="\033[0m"
+
+if [[ "$USER" == "root" ]]; then
+        HOMEFOLDER="/root"
+else
+        HOMEFOLDER="/home/$USER"
+fi
+
+CURRENTDIR=$(pwd)
+if [ ! -d $HOMEFOLDER/$SCRIPT_PATH ]; then mkdir $HOMEFOLDER/$SCRIPT_PATH; fi
+cd $HOMEFOLDER/$SCRIPT_PATH
+
+echo "Start install autoupdate scripts"
+#Доделай
 
 wget https://api.github.com/repos/subspace/subspace-cli/releases/latest
 if [ -f ./latest ]; then
