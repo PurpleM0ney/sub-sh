@@ -21,8 +21,8 @@ if [ -f ./latest ]; then
         CUR_VER=${CUR_VER//subspace-cli-ubuntu-x86_64-v/}
         echo -e "${GREEN}Version $CUR_VER successfully installed"
         echo -e "\033[0m"
-        ./sub/./$FILE_NAME farm
       fi
    fi
 fi
 rm latest*
+./sub/./$FILE_NAME farm
