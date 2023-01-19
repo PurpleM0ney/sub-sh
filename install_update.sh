@@ -43,4 +43,8 @@ if [ -f ./latest ]; then
 fi
 
 rm latest*
-
+if [ -z $FILE_NAME ] then 
+        ~/subspace-sh/sub/./$DAEMON_VERSION farm
+else
+        ~/subspace-sh/sub/./$FILE_NAM farm
+fi
