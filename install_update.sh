@@ -40,11 +40,10 @@ if [ -f ./latest ]; then
         echo -e "\033[0m"
       fi
    fi
-fi
-
-rm latest*
-if [ -z $FILE_NAME ]; then 
+       rm latest*
+       if [ -z $FILE_NAME ]; then 
         ~/subspace-sh/sub/./$DAEMON_VERSION farm
-else
+       else
         ~/subspace-sh/sub/./$FILE_NAM farm
+fi
 fi
