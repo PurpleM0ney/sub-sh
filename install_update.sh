@@ -17,7 +17,7 @@ if [ -f ./latest ]; then
       if [ -f ./sub/$FILE_NAME ]; then
         chmod +x ./sub/$FILE_NAME
         CUR_VER=${FILE_NAME//subspace-cli-ubuntu-x86_64-/}
-        echo -e "${GREEN}Version $CUR_VER successfully installed"
+        echo -e "${GREEN}/n/nVersion $CUR_VER successfully installed"
         echo -e "\033[0m"
       fi
    fi
