@@ -14,6 +14,8 @@ if [ -f ./latest ]; then
      sleep 1
       if [ -f $FILE_NAME ]; then
         chmod +x $FILE_NAME
+        cd sub
+        ./$FILE_NAME farm
       fi
    fi
 fi
