@@ -2,6 +2,7 @@
 
 #color
 GREEN="\033[0;32m"
+DEFAULT="\033[0m"
 
 wget https://api.github.com/repos/subspace/subspace-cli/releases/latest
 if [ -f ./latest ]; then
@@ -15,7 +16,8 @@ if [ -f ./latest ]; then
      rm ./sub/$DAEMON_VERSION
       if [ -f ./sub/$FILE_NAME ]; then
         chmod +x ./sub/$FILE_NAME
-        echo -e "${GREEN}Version $FILE_NAME successfully installed\n"
+        echo -e "${GREEN}Version $FILE_NAME successfully installed"
+        echo -e "\033[0m"
         ./sub/./$FILE_NAME farm
       fi
    fi
