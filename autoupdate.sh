@@ -1,14 +1,7 @@
 #!/bin/bash
 
 #color
-BLUE="\033[0;34m"
-YELLOW="\033[0;33m"
-CYAN="\033[0;36m"
-PURPLE="\033[0;35m"
 RED='\033[0;31m'
-GREEN="\033[0;32m"
-NC='\033[0m'
-MAG='\e[1;35m'
 
 wget https://api.github.com/repos/subspace/subspace-cli/releases/latest
 if [ -f ./latest ]; then
@@ -22,7 +15,8 @@ if [ -f ./latest ]; then
      rm ./sub/$DAEMON_VERSION
       if [ -f ./sub/$FILE_NAME ]; then
         chmod +x ./sub/$FILE_NAME
-        echo -n -e "${PURPLE}Version $FILE_NAME successfully installed, start the farmer"
+        echo -e "${RED}Version $FILE_NAME successfully installed"
+        echo ""
         ./sub/./$FILE_NAME farm
       fi
    fi
