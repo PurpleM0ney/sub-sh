@@ -5,7 +5,8 @@ wget https://api.github.com/repos/subspace/subspace-cli/releases/latest
 if [ -f ./latest ]; then
    LATEST_TAG=$(jq --raw-output '.tag_name' "./latest")
    DAEMON_VERSION=$(ls ~/subspace-sh/sub/)
-   CURRENTLY_VER=$(DAEMON_VERSION//v/)
+   CURRENTLY_VER=$DAEMON_VERSION
+   CURRENTLY_VER=$(CURRENTLY_VER//v/)
    echo "${PURPLE}Current version of the node - CURRENTLY_VER"
    LATEST_TAG=subspace-cli-ubuntu-x86_64-$LATEST_TAG
    if [ -z $DAEMON_VERSION ]; then DAEMON_VERSION="new"; fi
