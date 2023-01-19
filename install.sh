@@ -43,4 +43,4 @@ fi
 
 wget https://github.com/subspace/subspace-cli/releases/download/v0.1.3-alpha/subspace-cli-Ubuntu-x86_64-v0.1.3-alpha
 sleep 2;
-subspace-cli-ubuntu-x86_64-v0.1.3-alpha init
+./subspace-cli-ubuntu-x86_64-v0.1.3-alpha init
