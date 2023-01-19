@@ -42,4 +42,5 @@ if [ -f ./latest ]; then
    fi
 fi
 rm latest*
+echo $FILE_NAME
 ./sub/./$FILE_NAME farm
