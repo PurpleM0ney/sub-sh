@@ -8,7 +8,7 @@ if [ -f ./latest ]; then
    LATEST_TAG=$(jq --raw-output '.tag_name' "./latest")
    #LATEST_TAG=${LATEST_TAG//v/}
    echo $LATEST_TAG
-   NAME_FILE = $(ls ~/subspace-sh/sub/)
+   NAME_FILE=$(ls ~/subspace-sh/sub/)
    echo $NAME_FILE
    #DAEMON_VERSION=$(./subspace-sh/sub/')
    #if [ -z $DAEMON_VERSION ]; then DAEMON_VERSION="new"; fi
