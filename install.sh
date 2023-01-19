@@ -1,70 +1,105 @@
-#!/usr/bin/env bash
+#!/bin/bash
+clear
 
-DAEMON_FILE='subspace'
-RELEASES_PATH="https://github.com/subspace/subspace-cli/releases/download"
-FILE_NAME="subspace-cli"
-NODE_DIR='subspace'
-SCRIPT_DIR='subspace-scripts'
-SCRIPT_NAME='subspace_update.sh'
-SCRIPT_PATH="subspace-scripts"
+if [ ! $NODE_NAME ]; then
+	read -p "Дайте имя вашей ноде: " NODE_NAME
+fi
+sleep 1
+echo 'export SUBSPACE_NODENAME='$NODE_NAME >> $HOME/.bash_profile
+echo -e '\n\e[42mГотово\e[0m\n'
+echo "-----------------------------------------------------------------------------"
+if [ ! $YOUR_WALLET ]; then
+	read -p "Введите адрес кошелька : " YOUR_WALLET
+fi
+sleep 1
+echo 'export SUBSPACE_WALLET='$YOUR_WALLET >> $HOME/.bash_profile
+echo -e '\n\e[42mГотово\e[0m\n'
+echo "-----------------------------------------------------------------------------"
 
-#color
-BLUE="\033[0;34m"
-YELLOW="\033[0;33m"
-CYAN="\033[0;36m"
-PURPLE="\033[0;35m"
-RED='\033[0;31m'
-GREEN="\033[0;32m"
-NC='\033[0m'
-MAG='\e[1;35m'
 
-if [[ "$USER" == "root" ]]; then
-        HOMEFOLDER="/root"
-#        SERVICE_NAME='subspace-root'
+exists()
+{
+  command -v "$1" >/dev/null 2>&1
+}
+if exists curl; then
+	echo ''
 else
-        HOMEFOLDER="/home/$USER"
-#        SERVICE_NAME="subspace-$USER"
+  sudo apt update && sudo apt install curl -y < "/dev/null"
 fi
-SERVICE_NAME="subspace"
-
-cd $HOMEFOLDER/subspace-sh
-if [ ! -d $HOMEFOLDER/$NODE_DIR ]; then mkdir $HOMEFOLDER/$NODE_DIR; fi
-echo -e "${PURPLE}Preparing to install${NC}"
-if type apt-get; then
-      if type sudo; then break; else apt install sudo; fi
-      sudo apt update
-      sudo apt install -y jq curl unzip wget sudo
-elif type yum; then
-      sudo yum check-update
-      sudo yum install epel-release -y
-      sudo yum update -y
-      sudo yum install -y jq curl unzip wget
+bash_profile=$HOME/.bash_profile
+if [ -f "$bash_profile" ]; then
+    . $HOME/.bash_profile
 fi
+sleep 1
 
-echo -e "${GREEN}Downloading SubSpace node...${NC}" 
-if [ -d $HOMEFOLDER/$NODE_DIR/datadir/ipfs ]; then rm -rf $HOMEFOLDER/$NODE_DIR/datadir/ipfs; fi
-bash autoupdate.sh
-sudo bash $HOMEFOLDER/$SCRIPT_DIR/$SCRIPT_NAME
+sudo apt update && sudo apt install ocl-icd-opencl-dev libopencl-clang-dev libgomp1 -y
+cd $HOME
+rm -rf subspace*
+wget -O subspace-node https://github.com/subspace/subspace/releases/download/gemini-2a-2022-sep-10/subspace-node-ubuntu-x86_64-gemini-2a-2022-sep-10
+wget -O subspace-farmer https://github.com/subspace/subspace/releases/download/gemini-2a-2022-sep-10/subspace-farmer-ubuntu-x86_64-gemini-2a-2022-sep-10
+chmod +x subspace*
+mv subspace* /usr/local/bin/
 
-if [ ! -f $HOMEFOLDER/$NODE_DIR/$DAEMON_FILE ]; then
-        echo -e "${RED}Latest release not found, downloading previous ...${NC}"
-        cd $HOMEFOLDER/$SCRIPT_DIR/$DAEMON_FILE
-        LATEST_TAG=$(git tag --sort=-creatordate | head -2 | sed '1d')
-        LATEST_TAG=${LATEST_TAG//v/}
-        FILE_NAME+=$LATEST_TAG
-        sudo wget  "$RELEASES_PATH/v$LATEST_TAG/$FILE_NAME"
-        sudo chmod +x $FILE_NAME
-        sudo mv $FILE_NAME $HOMEFOLDER/$NODE_DIR/$DAEMON_FILE
-        cd $HOMEFOLDER
+systemctl stop subspaced subspaced-farmer &>/dev/null
+rm -rf ~/.local/share/subspace*
+
+source ~/.bash_profile
+sleep 1
+
+echo "[Unit]
+Description=Subspace Node
+After=network.target
+
+[Service]
+User=$USER
+Type=simple
+ExecStart=/usr/local/bin/subspace-node --chain gemini-2a --execution wasm --state-pruning archive --validator --name $SUBSPACE_NODENAME
+Restart=on-failure
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target" > $HOME/subspaced.service
+
+
+echo "[Unit]
+Description=Subspaced Farm
+After=network.target
+
+[Service]
+User=$USER
+Type=simple
+ExecStart=/usr/local/bin/subspace-farmer farm --reward-address $SUBSPACE_WALLET --plot-size 100G
+Restart=on-failure
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target" > $HOME/subspaced-farmer.service
+
+
+mv $HOME/subspaced* /etc/systemd/system/
+sudo systemctl restart systemd-journald
+sudo systemctl daemon-reload
+sudo systemctl enable subspaced subspaced-farmer
+sudo systemctl restart subspaced
+sleep 10
+sudo systemctl restart subspaced-farmer
+clear
+
+echo -e '\n\e[42mПроверка статуса ноды\e[0m\n' && sleep 1
+if [[ `service subspaced status | grep active` =~ "running" ]]; then
+  echo -e "Subspace нода \e[32mустановлена и работает\e[39m!"
+  echo -e "Проверить логи ноды можно командой - \e[7mjournalctl -u subspaced -f -o cat\e[0m"
+  echo -e "Команда для рестарта ноды - \e[7msudo systemctl restart subspaced\e[0m"
+else
+  echo -e "Subspace нода \e[31mбыла установлена некорректно\e[39m, пожалуйста, переустанови ее."
 fi
-
-echo -n -e "${YELLOW}Do you want enable node autoupdate script? [Y,n]:${NC}"
-read ANSWER
-if [ -z $ANSWER ] || [ $ANSWER = 'Y' ] || [ $ANSWER = 'y' ]; then
-  if [[ -z $(sudo -u root crontab -l | grep "$HOMEFOLDER/$SCRIPT_PATH/$SCRIPT_NAME") ]]; then
-        sudo -u root crontab -l > cron
-        echo -e "0 */1 * * * $HOMEFOLDER/$SCRIPT_PATH/$SCRIPT_NAME >/dev/null 2>&1" >> cron
-        sudo -u root crontab cron
-        rm cron
-  fi
+sleep 2
+echo "==================================================="
+echo -e '\n\e[42mПроверка статуса фармера\e[0m\n' && sleep 1
+if [[ `service subspaced-farmer status | grep active` =~ "running" ]]; then
+  echo -e "Subspace фармер \e[32mустановлен и работает\e[39m!"
+  echo -e "Проверить логи фармера можно командой - \e[7mjournalctl -u subspaced-farmer -f -o cat\e[0m"
+  echo -e "Команда для рестарта фармера - \e[7msudo systemctl restart subspaced-farmer\e[0m"
+else
+  echo -e "Subspace фармер \e[31mбыл установлен некорректно\e[39m, пожалуйста, переустанови его."
 fi
