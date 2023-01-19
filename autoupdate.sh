@@ -32,7 +32,7 @@ echo ''\''{print $3}'\'')' >> $SCRIPT_NAME
 echo '   if [ -z $DAEMON_VERSION ]; then DAEMON_VERSION="new"; fi' >> $SCRIPT_NAME
 echo '   if [ $DAEMON_VERSION != $LATEST_TAG ]; then' >> $SCRIPT_NAME
 echo -n '      curl -JL -o ./$FILE_NAME $' >> $SCRIPT_NAME
-echo '(jq --raw-output '"'"'.assets | map(select(.name | startswith("subspace-cli-macos-x86_"))) | .[0].browser_download_url'"'"' "./latest")' >> $SCRIPT_NAME
+echo '(jq --raw-output '"'"'.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64-"))) | .[0].browser_download_url'"'"' "./latest")' >> $SCRIPT_NAME
 echo '      if [ -f $FILE_NAME ]; then' >> $SCRIPT_NAME
 echo '         chmod +x $FILE_NAME' >> $SCRIPT_NAME
 echo '         pKILL=$(pwdx $(ps -e | grep subspace | awk '"'"'{print $1 }'"'"') | grep /root)' >> $SCRIPT_NAME
