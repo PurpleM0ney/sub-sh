@@ -10,7 +10,7 @@ if [ -f ./latest ]; then
    echo $LATEST_TAG
    NAME_FILE = $(ls ~/sub/)
    echo $NAME_FILE
-   #DAEMON_VERSION=$(./sub/')
+   #DAEMON_VERSION=$(./subspace-sh/sub/')
    #if [ -z $DAEMON_VERSION ]; then DAEMON_VERSION="new"; fi
    #if [ $DAEMON_VERSION != $LATEST_TAG ]; then
       #curl -JL -o ./$FILE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("idena-node-linux"))) | .[0].browser_download_url' "./latest")
