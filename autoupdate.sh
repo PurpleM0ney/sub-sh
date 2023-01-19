@@ -7,9 +7,9 @@ wget https://api.github.com/repos/subspace/subspace-cli/releases/latest
 if [ -f ./latest ]; then
    LATEST_TAG=$(jq --raw-output '.tag_name' "./latest")
    #LATEST_TAG=${LATEST_TAG//v/}
-     echo ${PURPLE}$LATEST_TAG
-   NAME_FILE = $(ls ~/sub/")
-      echo ${PURPLE}$NAME_FILE
+   echo $LATEST_TAG
+   NAME_FILE = $(ls ~/sub/)
+   echo $NAME_FILE
    #DAEMON_VERSION=$(./sub/')
    #if [ -z $DAEMON_VERSION ]; then DAEMON_VERSION="new"; fi
    #if [ $DAEMON_VERSION != $LATEST_TAG ]; then
