@@ -38,12 +38,12 @@ if [ -f ./latest ]; then
         CUR_VER=${CUR_VER//subspace-cli-ubuntu-x86_64-v/}
         echo -e "${GREEN}Version $CUR_VER successfully installed"
         echo -e "\033[0m"
+        ~/subspace-sh/sub/./$FILE_NAM farm
       fi
    fi
-       rm latest*
-       if [ -z $FILE_NAME ]; then 
-        ~/subspace-sh/sub/./$DAEMON_VERSION farm
-       else
-        ~/subspace-sh/sub/./$FILE_NAM farm
 fi
+
+rm latest*
+if [ -z $FILE_NAME ]; then 
+        ~/subspace-sh/sub/./$DAEMON_VERSION farm
 fi
