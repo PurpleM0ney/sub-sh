@@ -6,7 +6,7 @@ if [ -f ./latest ]; then
    LATEST_TAG=$(jq --raw-output '.tag_name' "./latest")
    DAEMON_VERSION=$(ls ~/subspace-sh/sub/)
    CURRENTLY_VER=$DAEMON_VERSION
-   echo "${PURPLE}Current version of the node - CURRENTLY_VER"
+   echo "${PURPLE}Current version of the node - $CURRENTLY_VER"
    LATEST_TAG=subspace-cli-ubuntu-x86_64-$LATEST_TAG
    if [ -z $DAEMON_VERSION ]; then DAEMON_VERSION="new"; fi
    if [ $DAEMON_VERSION != $LATEST_TAG ]; then
@@ -15,7 +15,7 @@ if [ -f ./latest ]; then
      rm ./sub/$DAEMON_VERSION
       if [ -f ./sub/$FILE_NAME ]; then
         chmod +x ./sub/$FILE_NAME
-        echo "${PURPLE}Version CURRENTLY_VER installed, start the farmer"
+        echo "${PURPLE}Version $CURRENTLY_VER installed, start the farmer"
         ./sub/./$FILE_NAME farm
       fi
    fi
