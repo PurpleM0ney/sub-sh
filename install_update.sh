@@ -26,8 +26,9 @@ if [ -f ./latest ]; then
    
    else
       rm latest*
+      CUR_VER=${DAEMON_VERSION//subspace-cli-ubuntu-x86_64-/}
       echo ""
-      echo -e "${GREEN}Checked, you have the current version installed!"
+      echo -e "${GREEN}Checked, you have the current ($DAEMON_VERSION) version installed!"
       echo -e "\033[0m"
       ./sub/./$DAEMON_VERSION farm
    fi
