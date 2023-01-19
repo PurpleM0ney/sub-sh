@@ -18,7 +18,7 @@ if [ -f ./latest ]; then
         chmod +x ./sub/$FILE_NAME
         CUR_VER=${FILE_NAME//subspace-cli-ubuntu-x86_64-/}
         echo ""
-        echo -e "${GREEN}Version $CUR_VER successfully installed"
+        echo -e "${GREEN}The node has been successfully updated! The current version is $CUR_VER"
         echo -e "\033[0m"
         rm latest*
         ./sub/./$FILE_NAME farm
