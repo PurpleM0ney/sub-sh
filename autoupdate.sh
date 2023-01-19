@@ -20,4 +20,3 @@ if [ -f ./latest ]; then
       fi
    fi
 fi
-rm latest*
