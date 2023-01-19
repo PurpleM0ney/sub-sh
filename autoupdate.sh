@@ -12,15 +12,15 @@ if [ -f ./latest ]; then
      exit
      FILE_NAME=$LATEST_TAG
      curl -JL -o ./sub/$LATEST_TAG $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "./latest")
-      if [ -f $FILE_NAME ]; then
+      #if [ -f $FILE_NAME ]; then
         # pKILL=$(pwdx $(ps -e | grep idena | awk '{print $1 }') | grep /root)
          #pKILL=$(echo $pKILL | awk '{print $1}' | sed s/.$//)
          #if [ ! -z pKILL ]; then systemctl stop idena.service; fi
          #mv $FILE_NAME /root/idena/idena-go
-         screen -r sub
-         cd ~/subspace-sh/sub/
-         chmod +x $FILE_NAME
-         ./$FILE_NAME farm
-      fi
+        # screen -r sub
+        # cd ~/subspace-sh/sub/
+         #chmod +x $FILE_NAME
+         #./$FILE_NAME farm
+      #fi
    fi
 fi
