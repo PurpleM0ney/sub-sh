@@ -20,9 +20,11 @@ if [ -f ./latest ]; then
         echo ""
         echo -e "${GREEN}Version $CUR_VER successfully installed"
         echo -e "\033[0m"
+        rm latest*
         ./sub/./$FILE_NAME farm
       fi
-   else ./sub/./$DAEMON_VERSION farm
+   else
+      rm latest*
+      ./sub/./$DAEMON_VERSION farm
    fi
 fi
-rm latest*
