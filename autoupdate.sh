@@ -17,6 +17,8 @@ if [ -f ./latest ]; then
       if [ -f ./sub/$FILE_NAME ]; then
         chmod +x ./sub/$FILE_NAME
         echo ""
+        CUR_VER=$FILE_NAME
+        CUR_VER=${CUR_VER//v/}
         echo -e "${GREEN}Version $FILE_NAME successfully installed"
         echo -e "\033[0m"
         ./sub/./$FILE_NAME farm
