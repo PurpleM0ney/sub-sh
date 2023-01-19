@@ -26,6 +26,9 @@ if [ -f ./latest ]; then
    
    else
       rm latest*
+      echo ""
+      echo -e "${GREEN}Checked, you have the current version installed!"
+      echo -e "\033[0m"
       ./sub/./$DAEMON_VERSION farm
    fi
 fi
