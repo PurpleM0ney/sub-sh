@@ -9,7 +9,7 @@ if [ -f ./latest ]; then
    #LATEST_TAG=${LATEST_TAG//v/}
    DAEMON_VERSION=$(ls ~/subspace-sh/sub/)
    LATEST_TAG=subspace-cli-ubuntu-x86_64-$LATEST_TAG
-   [ -z $DAEMON_VERSION ]; then DAEMON_VERSION="new"; fi
+   if [ -z $DAEMON_VERSION ]; then DAEMON_VERSION="new"; fi
    echo $DAEMON_VERSION
    #[ $DAEMON_VERSION != $LATEST_TAG ]; then
      # curl -JL -o ./$FILE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("idena-node-linux"))) | .[0].browser_download_url' "./latest")
