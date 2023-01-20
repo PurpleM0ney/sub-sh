@@ -25,7 +25,6 @@ if [ -f ./releases ]; then
    wget -P ~/subspace-sh/sub https://github.com/subspace/subspace/releases/download/$LATEST_TAG/subspace-farmer-ubuntu-x86_64-$LATEST_TAG
    fi
    
-   if [ -z $VERSION_FARMER ]; then echo "Установи фармер"; fi
    echo "Установлен Фармер - $VERSION_FARMER"
    echo "Установлена нода - $VERSION_NODE"
    echo "Сейчас автуален фармер - $LATEST_FARMER"
