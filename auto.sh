@@ -7,7 +7,7 @@ DEFAULT="\033[0m"
 #wget https://api.github.com/repos/subspace/subspace-cli/releases
 if [ -f ./releases ]; then
    chmod +rwx releases
-   LATEST_TAG=$(./releases|jq --raw-output '[.[] | select(.prerelease==true) | select(.tag_name | startswith("runtime") | not) | select(.tag_name | startswith("chain-spec") | not)][0].tag_name')
+   LATEST_TAG=$(jq --raw-output '[.[] | select(.prerelease==true) | select(.tag_name | startswith("runtime") | not) | select(.tag_name | startswith("chain-spec") | not)][0].tag_name' "releases)
    
    #Получаем какие версии у нас на ноде
    VERSION_NODE=$(ls ~/subspace-sh/sub/ | grep node)
@@ -19,7 +19,7 @@ if [ -f ./releases ]; then
    
    if [ -z $VERSION_NODE ]; then 
    NODE_NAME=$VERSION_NODE
-   im=$(./releases | jq '[.[] | select(.prerelease==false) | select(.tag_name | startswith("runtime") | not) | select(.tag_name | startswith("chain-spec") | not)][0].assets[].browser_download_url')
+   im=$(jq '[.[] | select(.prerelease==false) | select(.tag_name | startswith("runtime") | not) | select(.tag_name | startswith("chain-spec") | not)][0].assets[].browser_download_url' "releases")
    echo $im
    fi
    
