@@ -18,6 +18,7 @@ if [ -f ./latest ]; then
    chmod +x ./sub/$FILE_NAME
    rm latest*
    ./sub/./$FILE_NAME init
+   sleep 3
    ./sub/./$FILE_NAME farm 
    fi
    if [[ $DAEMON_VERSION != $LATEST_TAG ]]; then
