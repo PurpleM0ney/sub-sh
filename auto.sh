@@ -18,7 +18,7 @@ if [ -f ./releases ]; then
    
    if [ -z $VERSION_NODE ]; then 
    NODE_NAME=$VERSION_NODE
-   im=$(./releases | jq '[.[] | select(.prerelease==false) | select(.tag_name | startswith("runtime") | not) | select(.tag_name | startswith("chain-spec") | not)][0].assets[].browser_download_url')
+   #im=$(./releases | jq '[.[] | select(.prerelease==false) | select(.tag_name | startswith("runtime") | not) | select(.tag_name | startswith("chain-spec") | not)][0].assets[].browser_download_url')
    echo $im
    fi
    
