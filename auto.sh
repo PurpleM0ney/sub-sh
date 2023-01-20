@@ -58,7 +58,7 @@ if [ -f "$bash_profile" ]; then
    [Service]
    User=$USER
    Type=simple
-   ExecStart=/root/subspace/subspace-farmer-ubuntu-x86_64-$LATEST_TAG --chain gemini-3c --execution wasm --state-pruning archive --validator --name $SUBSPACE_NODENAME
+   ExecStart=/root/subspace/subspace-node-ubuntu-x86_64-$LATEST_TAG --chain gemini-3c --execution wasm --state-pruning archive --validator --name $SUBSPACE_NODENAME
    Restart=on-failure
    LimitNOFILE=65535
 
