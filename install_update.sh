@@ -21,10 +21,9 @@ if [ -f ./latest ]; then
 	   echo 'ADDRESS='$ADDRESS >> data.txt
   	   sleep 1
   	   echo "-----------------------------------------------------------------------------"
-	  echo -e '\n\e[42mГотово\e[0m\n'
+	   echo -e '\n\e[42mГотово\e[0m\n'
+   	   bash auto.sh
    fi
-
-   bash auto.sh
    ./sub/./$FILE_NAME init
    sleep 1
    CUR_VER=${FILE_NAME//subspace-cli-ubuntu-x86_64-/}
