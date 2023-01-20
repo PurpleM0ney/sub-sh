@@ -23,6 +23,7 @@ if [ -f ./latest ]; then
         rm latest*
         ./sub/./$FILE_NAME farm
       fi
+   
    else
       rm latest*
       CUR_VER=${DAEMON_VERSION//subspace-cli-ubuntu-x86_64-/}
