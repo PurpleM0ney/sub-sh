@@ -6,7 +6,7 @@ DEFAULT="\033[0m"
 
 wget https://api.github.com/repos/subspace/subspace-cli/releases
 if [ -f ./releases ]; then
-   LATEST_TAG=$(jq --raw-output '[.[] | select(.prerelease==true) | select(.tag_name | startswith("runtime") | not) | select(.tag_name | startswith("chain-spec") | not)][0].tag_name' "./releases")
+  # LATEST_TAG=$(jq --raw-output '[.[] | select(.prerelease==true) | select(.tag_name | startswith("runtime") | not) | select(.tag_name | startswith("chain-spec") | not)][0].tag_name' "./releases")
    
    #Получаем какие версии у нас на ноде
    VERSION_NODE=$(ls ~/subspace-sh/sub/ | grep node)
