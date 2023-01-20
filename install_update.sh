@@ -35,7 +35,7 @@ if [ -f ./latest ]; then
    rm latest*
    ./sub/./$FILE_NAME init
    echo $CHCK_ADDRESS
-   echo -ne '\n' | <yourfinecommandhere>
+   echo -ne '\n' | mycommand
    sleep 1
    CUR_VER=${FILE_NAME//subspace-cli-ubuntu-x86_64-/}
    echo "-----------------------------------------------------------------------------"
