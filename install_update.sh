@@ -13,7 +13,7 @@ if [ -f ./latest ]; then
    DAEMON_VERSION=$(ls ~/subspace-sh/sub/)
    LATEST_TAG=subspace-cli-ubuntu-x86_64-$LATEST_TAG
    if [ -z $DAEMON_VERSION ]; then
-   CHCK_DATA=$(cat data.txt | grep NAME)
+   CHCK_DATA=$(head data.txt | grep NAME)
    CHCK_DATA1=${CHCK_DATA//NAME=/}
    echo $CHCK_DATA1
    FILE_NAME=$LATEST_TAG
