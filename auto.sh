@@ -11,8 +11,8 @@ if [ -f "$bash_profile" ]; then
    mkdir /root/subspace
    
    #Получаем какие версии у нас на ноде
-   VERSION_NODE=$(ls ~/root/subspace/ | grep node)
-   VERSION_FARMER=$(ls ~/root/subspace/ | grep farmer)
+   VERSION_NODE=$(ls ~/subspace/ | grep node)
+   VERSION_FARMER=$(ls ~/subspace/ | grep farmer)
 
    #Получаем версию, которая должна быть
    LATEST_NODE=subspace-farmer-ubuntu-x86_64-$LATEST_TAG
@@ -39,8 +39,8 @@ sleep 1
    fi
    
    #Отладка
-   VERSION_NODE=$(ls ~/root/subspace/ | grep node)
-   VERSION_FARMER=$(ls ~/root/subspace/ | grep farmer)
+   VERSION_NODE=$(ls ~/subspace/ | grep node)
+   VERSION_FARMER=$(ls ~/subspace/ | grep farmer)
    echo "Установлен Фармер - $VERSION_FARMER"
    echo "Установлена нода - $VERSION_NODE"
    echo "Сейчас автуален фармер - $LATEST_FARMER"
