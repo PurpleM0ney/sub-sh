@@ -13,8 +13,8 @@ if [ -f ./latest ]; then
    DAEMON_VERSION=$(ls ~/subspace-sh/sub/)
    LATEST_TAG=subspace-cli-ubuntu-x86_64-$LATEST_TAG
    if [ -z $DAEMON_VERSION ]; then
-   CHCK_DATA=$(head data.txt | grep NAME)
-   CHCK_DATA1=${CHCK_DATA//NAME=/}
+   CHCK_DATA=$(head data | grep NAME)
+   CHCK_DATA=${CHCK_DATA//NAME=/}
    echo $CHCK_DATA1
    FILE_NAME=$LATEST_TAG
    curl -JL -o ./sub/$FILE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "./latest")
