@@ -19,6 +19,7 @@ if [ -f ./latest ]; then
    rm latest*
    ./sub/./$FILE_NAME init
    sleep 1
+   CUR_VER=${FILE_NAME//subspace-cli-ubuntu-x86_64-/}
    echo "-----------------------------------------------------------------------------"
    echo -e "\n\e[42mThe node has been successfully installed! The current version is $CUR_VER. Starting a farmer!\e[0m\n"
    echo "-----------------------------------------------------------------------------"
