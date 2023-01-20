@@ -13,21 +13,7 @@ if [ -f ./latest ]; then
    DAEMON_VERSION=$(ls ~/subspace-sh/sub/)
    LATEST_TAG=subspace-cli-ubuntu-x86_64-$LATEST_TAG
    if [ -z $DAEMON_VERSION ];
-   
-   if [ ! $NODE_NAME ]; then
-	read -p "Дайте имя вашей ноде: " NODE_NAME
-   fi
-   sleep 1
-   echo 'export SUBSPACE_NODENAME='$NODE_NAME >> $DATA_NAME
-   echo -e '\n\e[42mГотово\e[0m\n'
-   echo "-----------------------------------------------------------------------------"
-   if [ ! $YOUR_WALLET ]; then
-	read -p "Введите адрес кошелька : " YOUR_WALLET
-   fi
-   sleep 1
-   echo 'export SUBSPACE_WALLET='$YOUR_WALLET >> $DATA_NAME
-   echo -e '\n\e[42mГотово\e[0m\n'
-   echo "-----------------------------------------------------------------------------"
+
    
    FILE_NAME=$LATEST_TAG
    curl -JL -o ./sub/$FILE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "./latest")
