@@ -20,6 +20,7 @@ if [ -f ./releases ]; then
    if [ -z $VERSION_NODE ]; then 
    wget -P ~/subspace-sh/sub https://github.com/subspace/subspace/releases/download/$LATEST_TAG/subspace-node-ubuntu-x86_64-$LATEST_TAG
    screen -S subNode
+   sleep 2
    echo "АЛЛО"
    fi
    
