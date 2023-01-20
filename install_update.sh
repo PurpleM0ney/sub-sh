@@ -13,25 +13,11 @@ if [ -f ./latest ]; then
    DAEMON_VERSION=$(ls ~/subspace-sh/sub/)
    LATEST_TAG=subspace-cli-ubuntu-x86_64-$LATEST_TAG
    if [ -z $DAEMON_VERSION ]; then
-   if [ ! $NODE_NAME ]; then
-	read -p "Дайте имя вашей ноде: " NODE_NAME
-   fi
-   sleep 1
-   echo 'NODENAME='$NODE_NAME >> $DATA_NAME
-   echo -e '\n\e[42mDone!\e[0m\n'
-   echo "-----------------------------------------------------------------------------"
-   if [ ! $YOUR_WALLET ]; then
-	read -p "Введите адрес кошелька : " YOUR_WALLET
-   fi
-   sleep 1
-   echo 'WALLET='$YOUR_WALLET >> $DATA_NAME
-   echo -e '\n\e[42mDone!\e[0m\n'
-   echo "-----------------------------------------------------------------------------"
-   
    FILE_NAME=$LATEST_TAG
    curl -JL -o ./sub/$FILE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "./latest")
    chmod +x ./sub/$FILE_NAME
    rm latest*
+   ./sub/./$FILE_NAME init
    ./sub/./$FILE_NAME farm 
    fi
    if [[ $DAEMON_VERSION != $LATEST_TAG ]]; then
@@ -41,9 +27,9 @@ if [ -f ./latest ]; then
       if [ -f ./sub/$FILE_NAME ]; then
         chmod +x ./sub/$FILE_NAME
         CUR_VER=${FILE_NAME//subspace-cli-ubuntu-x86_64-/}
-        echo ""
+        echo "-----------------------------------------------------------------------------"
         echo -e "\n\e[42mThe node has been successfully updated! The current version is $CUR_VER\e[0m\n"
-        echo -e "\033[0m"
+        echo "-----------------------------------------------------------------------------"
         rm latest*
         ./sub/./$FILE_NAME farm
       fi
@@ -51,9 +37,9 @@ if [ -f ./latest ]; then
    else
       rm latest*
       CUR_VER=${DAEMON_VERSION//subspace-cli-ubuntu-x86_64-/}
-      echo ""
+      echo "-----------------------------------------------------------------------------"
       echo -e "\n\e[42mChecked, you have the current ($CUR_VER) version installed!\e[0m\n"
-      echo -e "\033[0m"
+      echo "-----------------------------------------------------------------------------"
       ./sub/./$DAEMON_VERSION farm
    fi
 fi
