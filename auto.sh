@@ -51,7 +51,46 @@ if [ -f "$bash_profile" ]; then
    source ~/.bash_profile
    sleep 1
    
+   echo "[Unit]
+   Description=Subspace Node
+   After=network.target
+
+   [Service]
+   User=$USER
+   Type=simple
+   ExecStart=/root/subspace/subspace-farmer-ubuntu-x86_64-$LATEST_TAG --chain gemini-3c --execution wasm --state-pruning archive --validator --name $SUBSPACE_NODENAME
+   Restart=on-failure
+   LimitNOFILE=65535
+
+   [Install]
+   WantedBy=multi-user.target" > $HOME/subspaced.service
+
+
+   echo "[Unit]
+   Description=Subspaced Farm
+   After=network.target
+
+   [Service]
+   User=$USER
+   Type=simple
+   ExecStart=/root/subspace/subspace-farmer-ubuntu-x86_64-$LATEST_TAG farm --reward-address $SUBSPACE_WALLET --plot-size 100G
+   Restart=on-failure
+   LimitNOFILE=65535
+
+   [Install]
+   WantedBy=multi-user.target" > $HOME/subspaced-farmer.service
+   
+   mv $HOME/subspaced* /etc/systemd/system/
+   sudo systemctl restart systemd-journald
+   sudo systemctl daemon-reload
+   sudo systemctl enable subspaced subspaced-farmer
+   sudo systemctl restart subspaced
+   sleep 10
+   sudo systemctl restart subspaced-farmer
+   
    #Отладка
+   echo -e "Проверить логи ноды можно командой - \e[7mjournalctl -u subspaced -f -o cat\e[0m"
+   echo -e "Проверить логи фармера можно командой - \e[7mjournalctl -u subspaced-farmer -f -o cat\e[0m"
    VERSION_NODE=$(ls ~/subspace/ | grep node)
    VERSION_FARMER=$(ls ~/subspace/ | grep farmer)
    echo "Установлен Фармер - $VERSION_FARMER"
