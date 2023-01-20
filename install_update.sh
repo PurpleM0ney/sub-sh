@@ -1,29 +1,19 @@
 #!/bin/bash
-
 DATA_NAME="data.txt"
 DATA_PATH="subspace-scripts"
-
 #color
 GREEN="\033[0;32m"
 DEFAULT="\033[0m"
-
 wget https://api.github.com/repos/subspace/subspace-cli/releases/latest
 if [ -f ./latest ]; then
    LATEST_TAG=$(jq --raw-output '.tag_name' "./latest")
    DAEMON_VERSION=$(ls ~/subspace-sh/sub/)
    LATEST_TAG=subspace-cli-ubuntu-x86_64-$LATEST_TAG
-   
-   if [ -z $DAEMON_VERSION ]; then #Ищем версию
-   FIND_DATA=$(find . -name "data.txt*") #Ищем файл data.txt
-
-   if [ -z $FIND_DATA ]; then #Не нашли док с данными
-	   read -p "Enter your farmer/reward address: " ADDRESS
-	   echo 'ADDRESS='$ADDRESS >> data.txt
-  	   sleep 1
-  	   echo "-----------------------------------------------------------------------------"
-	   echo -e '\n\e[42mГотово\e[0m\n'
-   	   bash auto.sh
-   fi
+   if [ -z $DAEMON_VERSION ]; then
+   FILE_NAME=$LATEST_TAG
+   curl -JL -o ./sub/$FILE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "./latest")
+   chmod +x ./sub/$FILE_NAME
+   rm latest*
    ./sub/./$FILE_NAME init
    sleep 1
    CUR_VER=${FILE_NAME//subspace-cli-ubuntu-x86_64-/}
@@ -32,8 +22,7 @@ if [ -f ./latest ]; then
    echo "-----------------------------------------------------------------------------"
    ./sub/./$FILE_NAME farm 
    fi
-  
-  if [[ $DAEMON_VERSION != $LATEST_TAG ]]; then
+   if [[ $DAEMON_VERSION != $LATEST_TAG ]]; then
      FILE_NAME=$LATEST_TAG
      curl -JL -o ./sub/$FILE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "./latest")
      rm ./sub/$DAEMON_VERSION
