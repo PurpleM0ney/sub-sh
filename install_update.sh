@@ -14,9 +14,10 @@ if [ -f ./latest ]; then
    LATEST_TAG=subspace-cli-ubuntu-x86_64-$LATEST_TAG
    if [ -z $DAEMON_VERSION ]; then
    FIND_DATA=$(find . -name "data.txt*")
-   if [ -z $DAEMON_VERSION ]; then
-	   read -p "Дайте имя вашей ноде: " NAME >> data.txt
+   if [ -z $FIND_DATA ]; then
+	   read -p "Дайте имя вашей ноде: " NAME
    fi
+   echo 'NAME='$NAMEE >> data.txt
    sleep 1
    echo -e '\n\e[42mГотово\e[0m\n'
    echo "-----------------------------------------------------------------------------"
