@@ -1,9 +1,5 @@
 #!/bin/bash
 
-#color
-GREEN="\033[0;32m"
-DEFAULT="\033[0m"
-
 bash_profile=$HOME/.bash_profile
 if [ -f "$bash_profile" ]; then
    LATEST_TAG=$(curl https://api.github.com/repos/subspace/subspace/releases | jq --raw-output '[.[] | select(.prerelease==true) | select(.tag_name | startswith("runtime") | not) | select(.tag_name | startswith("chain-spec") | not)][0].tag_name')
