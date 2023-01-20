@@ -4,9 +4,9 @@ DATA_PATH="subspace-scripts"
 #color
 GREEN="\033[0;32m"
 DEFAULT="\033[0m"
-wget https://api.github.com/repos/subspace/subspace-cli/releases/latest
+wget https://api.github.com/repos/subspace/subspace-cli/releases
 if [ -f ./latest ]; then
-   LATEST_TAG=$(jq --raw-output '.tag_name' "./latest")
+   LATEST_TAG=$(jq --raw-output '.tag_name' "./releases")
    DAEMON_VERSION=$(ls ~/subspace-sh/sub/)
    LATEST_TAG=subspace-cli-ubuntu-x86_64-$LATEST_TAG
    if [ -z $DAEMON_VERSION ]; then
