@@ -10,8 +10,8 @@ if [ -f "$bash_profile" ]; then
    echo $LATEST_TAG
    
    #Получаем какие версии у нас на ноде
-   VERSION_NODE=$(ls ~/usr/local/bin | grep node)
-   VERSION_FARMER=$(ls ~/usr/local/bin | grep farmer)
+   VERSION_NODE=$(ls ~/root/subspace/ | grep node)
+   VERSION_FARMER=$(ls ~/root/subspace/ | grep farmer)
 
    #Получаем версию, которая должна быть
    LATEST_NODE=subspace-farmer-ubuntu-x86_64-$LATEST_TAG
@@ -21,7 +21,7 @@ if [ -f "$bash_profile" ]; then
    cd $HOME
    wget  https://github.com/subspace/subspace/releases/download/$LATEST_TAG/subspace-node-ubuntu-x86_64-$LATEST_TAG
    chmod +x subspace*
-   mv subspace* /usr/local/bin/
+   mv subspace* /root/subspace/
 
    source ~/.bash_profile
 sleep 1
@@ -31,15 +31,15 @@ sleep 1
    cd $HOME
    wget https://github.com/subspace/subspace/releases/download/$LATEST_TAG/subspace-farmer-ubuntu-x86_64-$LATEST_TAG
    chmod +x subspace*
-   mv subspace* /usr/local/bin/
+   mv subspace* /root/subspace/
 
    source ~/.bash_profile
  sleep 1
    fi
    
    #Отладка
-   VERSION_NODE=$(ls ~/usr/local/bin | grep node)
-   VERSION_FARMER=$(ls ~/usr/local/bin | grep farmer)
+   VERSION_NODE=$(ls ~/root/subspace/ | grep node)
+   VERSION_FARMER=$(ls ~/root/subspace/ | grep farmer)
    echo "Установлен Фармер - $VERSION_FARMER"
    echo "Установлена нода - $VERSION_NODE"
    echo "Сейчас автуален фармер - $LATEST_FARMER"
