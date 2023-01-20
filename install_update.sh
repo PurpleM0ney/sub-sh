@@ -4,13 +4,27 @@
 GREEN="\033[0;32m"
 DEFAULT="\033[0m"
 
+clear
 wget https://api.github.com/repos/subspace/subspace-cli/releases/latest
 if [ -f ./latest ]; then
    LATEST_TAG=$(jq --raw-output '.tag_name' "./latest")
    DAEMON_VERSION=$(ls ~/subspace-sh/sub/)
    LATEST_TAG=subspace-cli-ubuntu-x86_64-$LATEST_TAG
    
-   if [[ -z $DAEMON_VERSION ]]; then 
+   if [[ -z $DAEMON_VERSION ]]; then
+    if [ ! $NODE_NAME ]; then
+	 read -p "Дайте имя вашей ноде: " NODE_NAME
+    fi
+    sleep 1
+    echo -e '\n\e[42mГотово\e[0m\n'
+    echo "-----------------------------------------------------------------------------"
+    if [ ! $YOUR_WALLET ]; then
+	 read -p "Введите адрес кошелька : " YOUR_WALLET
+    fi
+    sleep 1
+    echo -e '\n\e[42mГотово\e[0m\n'
+    echo "-----------------------------------------------------------------------------"
+   
     FILE_NAME=$LATEST_TAG
     curl -JL -o ./sub/$FILE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "./latest")
     chmod +x ./sub/$FILE_NAME
@@ -19,6 +33,9 @@ if [ -f ./latest ]; then
     echo -e "${GREEN}The node has been successfully installed! The current version is $CUR_VER"
     echo -e "\033[0m"
     rm latest*
+    ./sub/./$FILE_NAME init
+    echo $YOUR_WALLET
+    echo $NODE_NAME
     ./sub/./$FILE_NAME farm
    fi
    
