@@ -18,11 +18,11 @@ if [ -f ./releases ]; then
    LATEST_FARMER=subspace-cli-ubuntu-x86_64-$LATEST_TAG
    
    if [ -z $VERSION_NODE ]; then 
-   wget https://github.com/subspace/subspace/releases/download/$LATEST_TAG/subspace-node-ubuntu-x86_64-$LATEST_TAG
+   wget -P ~/subspace-sh/sub https://github.com/subspace/subspace/releases/download/$LATEST_TAG/subspace-node-ubuntu-x86_64-$LATEST_TAG
    fi
    
    if [ -z $VERSION_FARMER ]; then 
-   wget https://github.com/subspace/subspace/releases/download/$LATEST_TAG/subspace-farmer-ubuntu-x86_64-$LATEST_TAG
+   wget -P ~/subspace-sh/sub https://github.com/subspace/subspace/releases/download/$LATEST_TAG/subspace-farmer-ubuntu-x86_64-$LATEST_TAG
    fi
    
    if [ -z $VERSION_FARMER ]; then echo "Установи фармер"; fi
