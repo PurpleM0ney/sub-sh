@@ -85,7 +85,7 @@ if [ -f "$bash_profile" ]; then
    sudo systemctl daemon-reload
    sudo systemctl enable subspaced subspaced-farmer
    sudo systemctl restart subspaced
-   sleep 10
+   sleep 4
    sudo systemctl restart subspaced-farmer
    
    #Отладка
