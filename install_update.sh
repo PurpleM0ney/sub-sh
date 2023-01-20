@@ -18,7 +18,10 @@ if [ -f ./latest ]; then
    chmod +x ./sub/$FILE_NAME
    rm latest*
    ./sub/./$FILE_NAME init
-   sleep 3
+   sleep 1
+   echo "-----------------------------------------------------------------------------"
+   echo -e "\n\e[42mThe node has been successfully installed! The current version is $CUR_VER. Starting a farmer!\e[0m\n"
+   echo "-----------------------------------------------------------------------------"
    ./sub/./$FILE_NAME farm 
    fi
    if [[ $DAEMON_VERSION != $LATEST_TAG ]]; then
