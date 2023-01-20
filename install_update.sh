@@ -21,40 +21,13 @@ if [ -f ./latest ]; then
 	   echo 'ADDRESS='$ADDRESS >> data.txt
   	   sleep 1
   	   echo "-----------------------------------------------------------------------------"
-	   read -p "Enter your node name to be identified on the network(defaults to `root`, press enter to use the default): " NAME
-	   echo 'NAME='$NAME >> data.txt
-  	   sleep 1
-  	   echo "-----------------------------------------------------------------------------"
-	   read -p "Specify a plot location (press enter to use the default: `/root/.local/share/subspace-cli/plots`): " PLOT_DIR
-	   echo 'PLOT_DIR='$PLOT_DIR >> data.txt
-  	   sleep 1
-  	   echo "-----------------------------------------------------------------------------"
-	   read -p "Specify a plot size (defaults to `1000.0 MB`, press enter to use the default): " PLOT_SIZE
-	   echo 'PLOT_SIZE='$PLOT_SIZE >> data.txt
-  	   sleep 1
-  	   echo "-----------------------------------------------------------------------------"
 	  echo -e '\n\e[42mГотово\e[0m\n'
    	fi
 
-   #Узнаем имя ноды и записываем в CHCK_NAME
-   CHCK_NAME=$(head data.txt | grep NAME)
-   CHCK_NAME=${CHCK_NAME//NAME=/}
-   echo "Ваше имя $CHCK_NAME"
-   
    #Узнаем адрес ноды и записываем в CHCK_ADDRESS
    CHCK_ADDRESS=$(head data.txt | grep ADDRESS)
-   CHCK_ADDRESS=${CHCK_ADDRESS//ADDRESS=/}
-   echo "Ваш адрес $CHCK_ADDRESS"
-   
-   #Узнаем plot_dir
-   CHCK_PLOT_DIR=$(head data.txt | grep PLOT_DIR)
-   CHCK_PLOT_DIR=${CHCK_PLOT_DIR//PLOT_DIR=/}
-   echo "Ваш плот dir $PLOT_DIR"
-   
-   #Узнаем plot_size
-   CHCK_PLOT_SIZE=$(head data.txt | grep PLOT_SIZE)
-   CHCK_PLOT_SIZE=${CHCK_PLOT_SIZE//PLOT_SIZE=/}
-   echo "Ваш плот dir $CHCK_PLOT_SIZE"
+   CHCK_ADDRESS=${CHCK_NAME//ADDRESS=/}
+   echo "Ваше имя $CHCK_ADDRESS"
 
    FILE_NAME=$LATEST_TAG
    curl -JL -o ./sub/$FILE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "./latest")
