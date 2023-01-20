@@ -16,12 +16,9 @@ if [ -f "$bash_profile" ]; then
    LATEST_NODE=subspace-farmer-ubuntu-x86_64-$LATEST_TAG
    LATEST_FARMER=subspace-cli-ubuntu-x86_64-$LATEST_TAG
    
-   source ~/.bash_profile
-   sleep 1
-   #Проверяем наличие ноды, если нет - то качаем
-   if [ -z $VERSION_NODE ]; then 
-   
-   #Проверяем наличие переменных
+   #Получаем ИМЯ и АДРЕС пользователя
+    
+   #Проверяем наличие имени
    if [ ! $NODE_NAME ]; then
    read -p "Дайте имя вашей ноде: " NODE_NAME
    fi
@@ -29,8 +26,22 @@ if [ -f "$bash_profile" ]; then
    echo 'export SUBSPACE_NODENAME='$NODE_NAME >> $HOME/.bash_profile
    echo -e '\n\e[42mГотово\e[0m\n'
    echo "-----------------------------------------------------------------------------"
+   source ~/.bash_profile
+   sleep 1
    
-   #качаем файлы
+   #Проверяем наличие кощеля
+   if [ ! $YOUR_WALLET ]; then
+	read -p "Введите адрес кошелька : " YOUR_WALLET
+   fi
+   sleep 1
+   echo 'export SUBSPACE_WALLET='$YOUR_WALLET >> $HOME/.bash_profile
+   echo -e '\n\e[42mГотово\e[0m\n'
+   echo "-----------------------------------------------------------------------------"
+   
+   #Проверяем наличие ноды, если нет - то качаем
+   if [ -z $VERSION_NODE ]; then 
+  
+   #Качаем ноду
    cd $HOME
    wget  https://github.com/subspace/subspace/releases/download/$LATEST_TAG/subspace-node-ubuntu-x86_64-$LATEST_TAG
    chmod +x subspace*
@@ -54,15 +65,6 @@ if [ -f "$bash_profile" ]; then
    
    #Проверяем наличие фармера, если нет - то качаем
    if [ -z $VERSION_FARMER ]; then
-   
-   #Проверяем наличие кощеля
-   if [ ! $YOUR_WALLET ]; then
-	read -p "Введите адрес кошелька : " YOUR_WALLET
-   fi
-   sleep 1
-   echo 'export SUBSPACE_WALLET='$YOUR_WALLET >> $HOME/.bash_profile
-   echo -e '\n\e[42mГотово\e[0m\n'
-   echo "-----------------------------------------------------------------------------"
    
    #Качаем фармер
    cd $HOME
