@@ -79,7 +79,7 @@ if [ -f "$bash_profile" ]; then
 
    [Install]
    WantedBy=multi-user.target" > $HOME/subspaced-farmer.service
-   
+    
    mv $HOME/subspaced* /etc/systemd/system/
    sudo systemctl restart systemd-journald
    sudo systemctl daemon-reload
