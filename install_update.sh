@@ -43,17 +43,17 @@ if [ -f ./latest ]; then
    
    #Узнаем адрес ноды и записываем в CHCK_ADDRESS
    CHCK_ADDRESS=$(head data.txt | grep ADDRESS)
-   CHCK_ADDRESS=${CHCK_ADDRESS//NAME=/}
+   CHCK_ADDRESS=${CHCK_ADDRESS//ADDRESS=/}
    echo "Ваш адрес $CHCK_ADDRESS"
    
    #Узнаем plot_dir
    CHCK_PLOT_DIR=$(head data.txt | grep PLOT_DIR)
-   CHCK_PLOT_DIR=${CHCK_PLOT_DIR//PLOT=/}
+   CHCK_PLOT_DIR=${CHCK_PLOT_DIR//PLOT_DIR=/}
    echo "Ваш плот dir $PLOT_DIR"
    
    #Узнаем plot_size
    CHCK_PLOT_SIZE=$(head data.txt | grep PLOT_SIZE)
-   CHCK_PLOT_SIZE=${CHCK_PLOT_SIZE//PLOT=/}
+   CHCK_PLOT_SIZE=${CHCK_PLOT_SIZE//PLOT_SIZE=/}
    echo "Ваш плот dir $CHCK_PLOT_SIZE"
 
    FILE_NAME=$LATEST_TAG
