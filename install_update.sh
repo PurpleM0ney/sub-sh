@@ -13,13 +13,14 @@ if [ -f ./latest ]; then
    DAEMON_VERSION=$(ls ~/subspace-sh/sub/)
    LATEST_TAG=subspace-cli-ubuntu-x86_64-$LATEST_TAG
    if [ -z $DAEMON_VERSION ]; then
-   if [ ! find . -name "data.txt*" ]; then
-	   read -p "Дайте имя вашей ноде: " NODE_NAME
+   FIND_DATA=$(find . -name "data.txt*")
+   if [ -z $DAEMON_VERSION ]; then
+	   read -p "Дайте имя вашей ноде: " NAME >> data.txt
    fi
    sleep 1
-   echo 'export SUBSPACE_NODENAME='$NODE_NAME >> $HOME/.bash_profile
    echo -e '\n\e[42mГотово\e[0m\n'
    echo "-----------------------------------------------------------------------------"
+   
    CHCK_NAME=$(head data.txt | grep NAME)
    CHCK_NAME=${CHCK_NAME//NAME=/}
    echo $CHCK_NAME
