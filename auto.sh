@@ -18,7 +18,7 @@ if [ -f ./releases ]; then
    
    if [ -z $VERSION_NODE ]; then 
    NODE_NAME=$VERSION_NODE
-   im=$(curl https://api.github.com/repos/subspace/subspace/releases | jq [.[] 'map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) ] | .[0].browser_download_url')
+   im=$(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "./releases")
    echo $im
    fi
    
