@@ -22,7 +22,7 @@ if [ -f "$bash_profile" ]; then
    cd $HOME
    wget  https://github.com/subspace/subspace/releases/download/$LATEST_TAG/subspace-node-ubuntu-x86_64-$LATEST_TAG
    chmod +x subspace*
-   mv subspace* /root/subspace/
+   mv subspace-node-ubuntu-x86_64-$LATEST_TAG /root/subspace/
 
    source ~/.bash_profile
 sleep 1
@@ -32,7 +32,7 @@ sleep 1
    cd $HOME
    wget https://github.com/subspace/subspace/releases/download/$LATEST_TAG/subspace-farmer-ubuntu-x86_64-$LATEST_TAG
    chmod +x subspace*
-   mv subspace* /root/subspace/
+   mv subspace-farmer-ubuntu-x86_64-$LATEST_TAG /root/subspace/
 
    source ~/.bash_profile
  sleep 1
