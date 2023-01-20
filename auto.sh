@@ -1,20 +1,5 @@
 #!/bin/bash
 
-if [ ! $NODE_NAME ]; then
-	read -p "Дайте имя вашей ноде: " NODE_NAME
-fi
-sleep 1
-echo 'export SUBSPACE_NODENAME='$NODE_NAME >> $HOME/.bash_profile
-echo -e '\n\e[42mГотово\e[0m\n'
-echo "-----------------------------------------------------------------------------"
-if [ ! $YOUR_WALLET ]; then
-	read -p "Введите адрес кошелька : " YOUR_WALLET
-fi
-sleep 1
-echo 'export SUBSPACE_WALLET='$YOUR_WALLET >> $HOME/.bash_profile
-echo -e '\n\e[42mГотово\e[0m\n'
-echo "-----------------------------------------------------------------------------"
-
 bash_profile=$HOME/.bash_profile
 if [ -f "$bash_profile" ]; then
    LATEST_TAG=$(curl https://api.github.com/repos/subspace/subspace/releases | jq --raw-output '[.[] | select(.prerelease==true) | select(.tag_name | startswith("runtime") | not) | select(.tag_name | startswith("chain-spec") | not)][0].tag_name')
@@ -31,26 +16,27 @@ if [ -f "$bash_profile" ]; then
    LATEST_NODE=subspace-farmer-ubuntu-x86_64-$LATEST_TAG
    LATEST_FARMER=subspace-cli-ubuntu-x86_64-$LATEST_TAG
    
+   source ~/.bash_profile
+   sleep 1
    #Проверяем наличие ноды, если нет - то качаем
    if [ -z $VERSION_NODE ]; then 
+   
+   #Проверяем наличие переменных
+   if [ ! $NODE_NAME ]; then
+   read -p "Дайте имя вашей ноде: " NODE_NAME
+   fi
+   sleep 1
+   echo 'export SUBSPACE_NODENAME='$NODE_NAME >> $HOME/.bash_profile
+   echo -e '\n\e[42mГотово\e[0m\n'
+   echo "-----------------------------------------------------------------------------"
+   
+   #качаем файлы
    cd $HOME
    wget  https://github.com/subspace/subspace/releases/download/$LATEST_TAG/subspace-node-ubuntu-x86_64-$LATEST_TAG
    chmod +x subspace*
    mv subspace-node-ubuntu-x86_64-$LATEST_TAG /root/subspace/
-   fi
    
-   #Проверяем наличие фармера, если нет - то качаем
-   if [ -z $VERSION_FARMER ]; then 
-   cd $HOME
-   wget https://github.com/subspace/subspace/releases/download/$LATEST_TAG/subspace-farmer-ubuntu-x86_64-$LATEST_TAG
-   chmod +x subspace*
-   mv subspace-farmer-ubuntu-x86_64-$LATEST_TAG /root/subspace/
-   fi
-   
-   
-   source ~/.bash_profile
-   sleep 1
-   
+   #Создаем сервисник для ноды
    echo "[Unit]
    Description=Subspace Node
    After=network.target
@@ -64,8 +50,27 @@ if [ -f "$bash_profile" ]; then
 
    [Install]
    WantedBy=multi-user.target" > $HOME/subspaced.service
-
-
+   fi
+   
+   #Проверяем наличие фармера, если нет - то качаем
+   if [ -z $VERSION_FARMER ]; then
+   
+   #Проверяем наличие кощеля
+   if [ ! $YOUR_WALLET ]; then
+	read -p "Введите адрес кошелька : " YOUR_WALLET
+   fi
+   sleep 1
+   echo 'export SUBSPACE_WALLET='$YOUR_WALLET >> $HOME/.bash_profile
+   echo -e '\n\e[42mГотово\e[0m\n'
+   echo "-----------------------------------------------------------------------------"
+   
+   #Качаем фармер
+   cd $HOME
+   wget https://github.com/subspace/subspace/releases/download/$LATEST_TAG/subspace-farmer-ubuntu-x86_64-$LATEST_TAG
+   chmod +x subspace*
+   mv subspace-farmer-ubuntu-x86_64-$LATEST_TAG /root/subspace/
+   
+   #Создаем сервисник для Фармера
    echo "[Unit]
    Description=Subspaced Farm
    After=network.target
@@ -79,6 +84,7 @@ if [ -f "$bash_profile" ]; then
 
    [Install]
    WantedBy=multi-user.target" > $HOME/subspaced-farmer.service
+   fi
     
    mv $HOME/subspaced* /etc/systemd/system/
    sudo systemctl restart systemd-journald
