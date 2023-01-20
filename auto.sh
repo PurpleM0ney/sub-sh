@@ -1,5 +1,20 @@
 #!/bin/bash
 
+if [ ! $NODE_NAME ]; then
+	read -p "Дайте имя вашей ноде: " NODE_NAME
+fi
+sleep 1
+echo 'export SUBSPACE_NODENAME='$NODE_NAME >> $HOME/.bash_profile
+echo -e '\n\e[42mГотово\e[0m\n'
+echo "-----------------------------------------------------------------------------"
+if [ ! $YOUR_WALLET ]; then
+	read -p "Введите адрес кошелька : " YOUR_WALLET
+fi
+sleep 1
+echo 'export SUBSPACE_WALLET='$YOUR_WALLET >> $HOME/.bash_profile
+echo -e '\n\e[42mГотово\e[0m\n'
+echo "-----------------------------------------------------------------------------"
+
 bash_profile=$HOME/.bash_profile
 if [ -f "$bash_profile" ]; then
    LATEST_TAG=$(curl https://api.github.com/repos/subspace/subspace/releases | jq --raw-output '[.[] | select(.prerelease==true) | select(.tag_name | startswith("runtime") | not) | select(.tag_name | startswith("chain-spec") | not)][0].tag_name')
