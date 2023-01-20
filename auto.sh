@@ -10,8 +10,8 @@ if [ -f "$bash_profile" ]; then
    echo $LATEST_TAG
    
    #Получаем какие версии у нас на ноде
-   VERSION_NODE=$(ls ~/subspace-sh/sub/ | grep node)
-   VERSION_FARMER=$(ls ~/subspace-sh/sub/ | grep farmer)
+   VERSION_NODE=$(ls ~/usr/local/bin/ | grep node)
+   VERSION_FARMER=$(ls ~/usr/local/bin/ | grep farmer)
 
    #Получаем версию, которая должна быть
    LATEST_NODE=subspace-farmer-ubuntu-x86_64-$LATEST_TAG
