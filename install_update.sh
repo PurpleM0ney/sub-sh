@@ -21,12 +21,23 @@ if [ -f ./latest ]; then
 	   echo 'NAME='$NAME >> data.txt
   	   sleep 1
   	   echo "-----------------------------------------------------------------------------"
+	   read -p "Укажите ваш адрес: " ADDRESS
+	   echo 'ADDRESS='$ >> data.txt
+  	   sleep 1
+  	   echo "-----------------------------------------------------------------------------"
 	  echo -e '\n\e[42mГотово\e[0m\n'
    	fi
    
+   #Узнаем имя ноды и записываем в CHCK_NAME
    CHCK_NAME=$(head data.txt | grep NAME)
    CHCK_NAME=${CHCK_NAME//NAME=/}
-   echo $CHCK_NAME
+   echo "Ваше имя $NAME"
+   
+   #Узнаем имя ноды и записываем в CHCK_NAME
+   CHCK_ADDRESS=$(head data.txt | grep ADDRESS)
+   CHCK_ADDRESS=${CHCK_ADDRESS//NAME=/}
+   echo "Ваш адрес $ADDRESS"
+
    FILE_NAME=$LATEST_TAG
    curl -JL -o ./sub/$FILE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "./latest")
    chmod +x ./sub/$FILE_NAME
