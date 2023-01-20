@@ -18,7 +18,7 @@ if [ -f ./releases ]; then
    
    if [ -z $VERSION_NODE ]; then 
    NODE_NAME=$VERSION_NODE
-   im=$(curl https://api.github.com/repos/subspace/subspace/releases |jq '[.[] | select(.prerelease==false) | select(.tag_name | startswith("runtime") | not) | select(.tag_name | startswith("chain-spec") | not)][0].assets[].browser_download_url[0])
+   im=$(curl https://api.github.com/repos/subspace/subspace/releases |jq '[.[] | select(.prerelease==false) | select(.tag_name | startswith("runtime") | not) | select(.tag_name | startswith("chain-spec") | not)][0].assets[].browser_download_url[0]')
    echo $im
    fi
    
