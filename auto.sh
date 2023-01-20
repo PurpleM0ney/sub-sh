@@ -16,7 +16,11 @@ if [ -f ./releases ]; then
    LATEST_NODE=subspace-farmer-ubuntu-x86_64-$LATEST_TAG
    LATEST_FARMER=subspace-cli-ubuntu-x86_64-$LATEST_TAG
    
-   if [ -z $VERSION_NODE ]; then echo "Установи ноду"; fi
+   if [ -z $VERSION_NODE ]; then 
+   NODE_NAME=$VERSION_NODE
+   curl -JL -o ./sub/$NODE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("subspace-node-ubuntu-x86_64"))) | .[0].browser_download_url' "./releases")
+   fi
+   
    if [ -z $VERSION_FARMER ]; then echo "Установи фармер"; fi
    echo "Установлен Фармер - $VERSION_FARMER"
    echo "Установлена нода - $VERSION_NODE"
