@@ -17,15 +17,15 @@ if [ -f ./latest ]; then
 	read -p "Дайте имя вашей ноде: " NODE_NAME
    fi
    sleep 1
-   echo 'export SUBSPACE_NODENAME='$NODE_NAME >> $DATA_NAME
-   echo -e '\n\e[42mГотово\e[0m\n'
+   echo 'NODENAME='$NODE_NAME >> $DATA_NAME
+   echo -e '\n\e[42mDone!\e[0m\n'
    echo "-----------------------------------------------------------------------------"
    if [ ! $YOUR_WALLET ]; then
 	read -p "Введите адрес кошелька : " YOUR_WALLET
    fi
    sleep 1
-   echo 'export SUBSPACE_WALLET='$YOUR_WALLET >> $DATA_NAME
-   echo -e '\n\e[42mГотово\e[0m\n'
+   echo 'WALLET='$YOUR_WALLET >> $DATA_NAME
+   echo -e '\n\e[42mDone!\e[0m\n'
    echo "-----------------------------------------------------------------------------"
    
    FILE_NAME=$LATEST_TAG
@@ -42,7 +42,7 @@ if [ -f ./latest ]; then
         chmod +x ./sub/$FILE_NAME
         CUR_VER=${FILE_NAME//subspace-cli-ubuntu-x86_64-/}
         echo ""
-        echo -e "${GREEN}The node has been successfully updated! The current version is $CUR_VER"
+        echo -e "\n\e[42mThe node has been successfully updated! The current version is $CUR_VER\e[0m\n"
         echo -e "\033[0m"
         rm latest*
         ./sub/./$FILE_NAME farm
@@ -52,7 +52,7 @@ if [ -f ./latest ]; then
       rm latest*
       CUR_VER=${DAEMON_VERSION//subspace-cli-ubuntu-x86_64-/}
       echo ""
-      echo -e "${GREEN}Checked, you have the current ($CUR_VER) version installed!"
+      echo -e "\n\e[42mChecked, you have the current ($CUR_VER) version installed!\e[0m\n"
       echo -e "\033[0m"
       ./sub/./$DAEMON_VERSION farm
    fi
