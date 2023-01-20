@@ -18,7 +18,7 @@ if [ -f ./releases ]; then
    
    if [ -z $VERSION_NODE ]; then 
    NODE_NAME=$VERSION_NODE
-   im=$(jq '[.[] | select(.prerelease==false) | select(.tag_name | startswith("subspace-node-ubuntu-x86_64") | not) | select(.tag_name | startswith("chain-spec") | not)][0].assets[].browser_download_url' "./releases")
+   im=$(jq '[.[] | select(.prerelease==true) | select(.tag_name | startswith("subspace-node-ubuntu-x86_64") | not) | select(.tag_name | startswith("chain-spec") | not)][0].assets[].browser_download_url' "./releases")
    echo $im
    fi
    
