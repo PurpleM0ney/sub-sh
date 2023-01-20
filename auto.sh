@@ -9,7 +9,7 @@ if [ -f "$bash_profile" ]; then
    LATEST_TAG=$(curl https://api.github.com/repos/subspace/subspace/releases | jq --raw-output '[.[] | select(.prerelease==true) | select(.tag_name | startswith("runtime") | not) | select(.tag_name | startswith("chain-spec") | not)][0].tag_name')
    
    DIR=$(ls ~/ | grep subspace)
-   if [-z $DIR ]; then mkdir /root/subspace; fi
+   if [ -z $DIR ]; then mkdir /root/subspace; fi
    
    #Получаем какие версии у нас на ноде
    VERSION_NODE=$(ls ~/subspace/ | grep node)
