@@ -4,7 +4,6 @@
 GREEN="\033[0;32m"
 DEFAULT="\033[0m"
 
-clear
 wget https://api.github.com/repos/subspace/subspace-cli/releases/latest
 if [ -f ./latest ]; then
    LATEST_TAG=$(jq --raw-output '.tag_name' "./latest")
