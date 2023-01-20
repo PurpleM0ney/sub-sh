@@ -1,15 +1,20 @@
 #!/bin/bash
+
 DATA_NAME="data.txt"
 DATA_PATH="subspace-scripts"
+
 #color
 GREEN="\033[0;32m"
 DEFAULT="\033[0m"
+
 wget https://api.github.com/repos/subspace/subspace-cli/releases/latest
 if [ -f ./latest ]; then
    LATEST_TAG=$(jq --raw-output '.tag_name' "./latest")
    DAEMON_VERSION=$(ls ~/subspace-sh/sub/)
    LATEST_TAG=subspace-cli-ubuntu-x86_64-$LATEST_TAG
    if [ -z $DAEMON_VERSION ]; then
+   CHCK_DATA=$(ls ~/subspace-sh/sub/ | grep data)
+   echo $CHCK_DATA
    FILE_NAME=$LATEST_TAG
    curl -JL -o ./sub/$FILE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "./latest")
    chmod +x ./sub/$FILE_NAME
