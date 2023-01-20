@@ -20,7 +20,7 @@ if [ -f ./releases ]; then
    if [ -z $VERSION_NODE ]; then 
    wget -P ~/subspace-sh/sub https://github.com/subspace/subspace/releases/download/$LATEST_TAG/subspace-node-ubuntu-x86_64-$LATEST_TAG
    screen -S subNode
-   echo ~/subspace-sh/sub/./subspace-node-ubuntu-x86_64-gemini-3c-2023-jan-18
+   echo "АЛЛО"
    fi
    
    if [ -z $VERSION_FARMER ]; then 
