@@ -14,10 +14,18 @@ if [ -f ./latest ]; then
    LATEST_TAG=subspace-cli-ubuntu-x86_64-$LATEST_TAG
    
    if [ -z $DAEMON_VERSION ]; then #Ищем версию
+   FIND_DATA=$(find . -name "data.txt*") #Ищем файл data.txt
+
+   if [ -z $FIND_DATA ]; then #Не нашли док с данными
+	   read -p "Enter your farmer/reward address: " ADDRESS
+	   echo 'ADDRESS='$ADDRESS >> data.txt
+  	   sleep 1
+  	   echo "-----------------------------------------------------------------------------"
+	  echo -e '\n\e[42mГотово\e[0m\n'
+   fi
+
    bash auto.sh
    ./sub/./$FILE_NAME init
-   echo $CHCK_ADDRESS
-   echo -ne '\n' | mycommand
    sleep 1
    CUR_VER=${FILE_NAME//subspace-cli-ubuntu-x86_64-/}
    echo "-----------------------------------------------------------------------------"
