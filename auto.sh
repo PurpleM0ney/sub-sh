@@ -12,6 +12,7 @@ if [ -f ./releases ]; then
    VERSION_FARMER=$(ls ~/subspace-sh/sub/ | grep farmer)
    
    LATEST_NODE=subspace-farmer-ubuntu-x86_64-$LATEST_TAG
+   LATEST_NODE=${LATEST_NODE//""/}
    LATEST_FARMER=subspace-cli-ubuntu-x86_64-$LATEST_TAG
    
    echo $VERSION_FARMER
