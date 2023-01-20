@@ -16,7 +16,8 @@ if [ -f ./releases ]; then
    LATEST_NODE=subspace-farmer-ubuntu-x86_64-$LATEST_TAG
    LATEST_FARMER=subspace-cli-ubuntu-x86_64-$LATEST_TAG
    
-   if [ -z $VERSION_NODE && VERSION_FARMER ]; then echo "Установи ноду"; fi
+   if [ -z $VERSION_NODE ]; then echo "Установи ноду"; fi
+   if [ -z $VERSION_NODE ]; then echo "Установи фармер"; fi
    echo "Установлен Фармер - $VERSION_FARMER"
    echo "Установлена нода - $VERSION_NODE"
    echo "Сейчас автуален фармер - $LATEST_FARMER"
