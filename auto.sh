@@ -10,4 +10,7 @@ if [ -f ./releases ]; then
    
    VERSION_NODE=$(ls ~/subspace-sh/sub/ | grep node)
    VERSION_FARMER=$(ls ~/subspace-sh/sub/ | grep farmer)
+   
+   echo $VERSION_FARMER
+   echo $VERSION_NODE
 fi
