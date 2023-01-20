@@ -12,15 +12,17 @@ if [ -f ./latest ]; then
    LATEST_TAG=$(jq --raw-output '.tag_name' "./latest")
    DAEMON_VERSION=$(ls ~/subspace-sh/sub/)
    LATEST_TAG=subspace-cli-ubuntu-x86_64-$LATEST_TAG
-   if [ -z $DAEMON_VERSION ]; then
-   FIND_DATA=$(find . -name "data.txt*")
-   if [ -z $FIND_DATA ]; then
+   
+   if [ -z $DAEMON_VERSION ]; then #Ищем версию
+   	FIND_DATA=$(find . -name "data.txt*")
+	
+  	if [ -z $FIND_DATA ]; then #Ищем файл data.txt
 	   read -p "Дайте имя вашей ноде: " NAME
-   fi
-   echo 'NAME='$NAMEE >> data.txt
-   sleep 1
-   echo -e '\n\e[42mГотово\e[0m\n'
-   echo "-----------------------------------------------------------------------------"
+	   echo 'NAME='$NAME >> data.txt
+  	   sleep 1
+  	   echo "-----------------------------------------------------------------------------"
+	  echo -e '\n\e[42mГотово\e[0m\n'
+   	fi
    
    CHCK_NAME=$(head data.txt | grep NAME)
    CHCK_NAME=${CHCK_NAME//NAME=/}
@@ -37,7 +39,8 @@ if [ -f ./latest ]; then
    echo "-----------------------------------------------------------------------------"
    ./sub/./$FILE_NAME farm 
    fi
-   if [[ $DAEMON_VERSION != $LATEST_TAG ]]; then
+  
+  if [[ $DAEMON_VERSION != $LATEST_TAG ]]; then
      FILE_NAME=$LATEST_TAG
      curl -JL -o ./sub/$FILE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "./latest")
      rm ./sub/$DAEMON_VERSION
