@@ -14,25 +14,7 @@ if [ -f ./latest ]; then
    LATEST_TAG=subspace-cli-ubuntu-x86_64-$LATEST_TAG
    
    if [ -z $DAEMON_VERSION ]; then #Ищем версию
-   	FIND_DATA=$(find . -name "data.txt*")
-	
-  	if [ -z $FIND_DATA ]; then #Ищем файл data.txt
-	   read -p "Enter your farmer/reward address: " ADDRESS
-	   echo 'ADDRESS='$ADDRESS >> data.txt
-  	   sleep 1
-  	   echo "-----------------------------------------------------------------------------"
-	  echo -e '\n\e[42mГотово\e[0m\n'
-   	fi
-
-   #Узнаем адрес ноды и записываем в CHCK_ADDRESS
-   CHCK_ADDRESS=$(head data.txt | grep ADDRESS)
-   CHCK_ADDRESS=${CHCK_ADDRESS//ADDRESS=/}
-   echo "Ваш кошелек $CHCK_ADDRESS"
-
-   FILE_NAME=$LATEST_TAG
-   curl -JL -o ./sub/$FILE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "./latest")
-   chmod +x ./sub/$FILE_NAME
-   rm latest*
+   bash auto.sh
    ./sub/./$FILE_NAME init
    echo $CHCK_ADDRESS
    echo -ne '\n' | mycommand
