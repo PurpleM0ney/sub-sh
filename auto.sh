@@ -54,7 +54,7 @@ bash_profile=$HOME/.bash_profile
    [Service]
    User=$USER
    Type=simple
-   ExecStart=/root/subspace/subspace-node-ubuntu-x86_64-$LATEST_TAG --chain gemini-3c --execution wasm --state-pruning archive --validator --name $SUBSPACE_NODENAME
+   ExecStart=/root/subspace/subspace-node-ubuntu-x86_64-$LATEST_TAG --chain gemini-3c --execution wasm --state-pruning archive --validator --name $CHCK_NAME
    Restart=on-failure
    LimitNOFILE=65535
 
@@ -79,7 +79,7 @@ bash_profile=$HOME/.bash_profile
    [Service]
    User=$USER
    Type=simple
-   ExecStart=/root/subspace/subspace-farmer-ubuntu-x86_64-$LATEST_TAG farm --reward-address $SUBSPACE_WALLET --plot-size 100G
+   ExecStart=/root/subspace/subspace-farmer-ubuntu-x86_64-$LATEST_TAG farm --reward-address $CHCK_ADDRESS --plot-size 100G
    Restart=on-failure
    LimitNOFILE=65535
 
