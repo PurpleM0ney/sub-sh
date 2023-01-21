@@ -19,8 +19,8 @@ if [ -f "$bash_profile" ]; then
    #Получаем ИМЯ и АДРЕС пользователя
    CHCK_NAME=$(cat ~/.bash_profile | grep NAME)
    CHCK_NAME=${CHCK_NAME//NODENAME=/}
-   CHCK_ADDRESS=$(cat ~/.bash_profile | grep ADDRESS)
-   CHCK_ADDRESS=${CHCK_ADDRESS//ADDRESS=/}
+   #CHCK_ADDRESS=$(cat ~/.bash_profile | grep ADDRESS)
+   #CHCK_ADDRESS=${CHCK_ADDRESS//ADDRESS=/}
    
    #Проверяем наличие имени
    if [ -z $CHCK_NAME ]; then
@@ -30,7 +30,6 @@ if [ -f "$bash_profile" ]; then
    echo 'NODENAME='$NODE_NAME >> $HOME/.bash_profile
    echo -e '\n\e[42mГотово\e[0m\n'
    echo "-----------------------------------------------------------------------------"
-   source ~/.bash_profile
    sleep 1
    
    #Проверяем наличие кощеля
