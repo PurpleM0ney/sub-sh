@@ -20,19 +20,19 @@ if [ -f ./latest ]; then
    #создаем screen
    screen -d -m -S subInit
    screen -r subInit -X stuff  "/root/subspace-sh/sub/./$FILE_NAME init^M"
-   sleep 2
+   sleep 1
    screen -r subInit -X stuff  "stBXULMGfc44YKaFRm2VGuczonxq5a2yTqfseQBB49o77bgwR^M"
-   sleep 2
+   sleep 1
    screen -r subInit -X stuff  "PurpleMoney^M"
-   sleep 2
+   sleep 1
    screen -r subInit -X stuff  "^M"
-   sleep 2
+   sleep 1
    screen -r subInit -X stuff  "^M"
-   sleep 2
+   sleep 1
    screen -r subInit -X stuff  "^M" 
-   sleep 2
+   sleep 1
    screen -X -S subInit quit
-   sleep 2
+   sleep 1
    
    CUR_VER=${FILE_NAME//subspace-cli-ubuntu-x86_64-/}
    echo "-----------------------------------------------------------------------------"
@@ -53,17 +53,19 @@ if [ -f ./latest ]; then
         #создаем screen
         screen -d -m -S subInit
         screen -r subInit -X stuff  "/root/subspace-sh/sub/./$FILE_NAME init^M"
-        sleep 2
+        sleep 1
         screen -r subInit -X stuff  "stBXULMGfc44YKaFRm2VGuczonxq5a2yTqfseQBB49o77bgwR^M"
-        sleep 2
+        sleep 1
         screen -r subInit -X stuff  "PurpleMoney^M"
-        sleep 2
+        sleep 1
         screen -r subInit -X stuff  "^M"
-        sleep 2
+        sleep 1
         screen -r subInit -X stuff  "^M"
-        sleep 2
+        sleep 1
         screen -r subInit -X stuff  "^M" 
-        sleep 2
+        sleep 1
+        screen -X -S subInit quit
+        sleep 1
    
         echo "-----------------------------------------------------------------------------"
         echo -e "\n\e[42mThe node has been successfully updated! The current version is $CUR_VER\e[0m\n"
