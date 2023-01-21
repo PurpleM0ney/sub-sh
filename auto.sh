@@ -25,7 +25,7 @@ if [ -f "$bash_profile" ]; then
    echo $CHCK_ADDRESS
    
    #Проверяем наличие имени
-   if [ -z $CHCK_NAME ]; then
+   if [ ! -z $CHCK_NAME ]; then
    read -p "Дайте имя вашей ноде: " NODE_NAME
    fi
    sleep 1
@@ -35,7 +35,7 @@ if [ -f "$bash_profile" ]; then
    sleep 1
    
    #Проверяем наличие кощеля
-   if [ -z $CHCK_ADDRESS ]; then
+   if [ ! -z $CHCK_ADDRESS ]; then
 	read -p "Введите адрес кошелька : " YOUR_WALLET
    fi
    sleep 1
