@@ -25,22 +25,22 @@ bash_profile=$HOME/.bash_profile
    
    #Проверяем наличие имени
    if [ -z $CHCK_NAME ]; then
-   read -p "Дайте имя вашей ноде: " NODE_NAME
+   	read -p "Дайте имя вашей ноде: " NODE_NAME
+   	sleep 1
+   	echo 'NODENAME='$NODE_NAME >> $HOME/.bash_profile
+   	echo -e '\n\e[42mГотово\e[0m\n'
+   	echo "-----------------------------------------------------------------------------"
+   	sleep 1
    fi
-   sleep 1
-   echo 'NODENAME='$NODE_NAME >> $HOME/.bash_profile
-   echo -e '\n\e[42mГотово\e[0m\n'
-   echo "-----------------------------------------------------------------------------"
-   sleep 1
    
    #Проверяем наличие кощеля
    if [ -z $CHCK_ADDRESS ]; then
 	read -p "Введите адрес кошелька : " YOUR_WALLET
+   	sleep 1
+  	 echo 'ADDRESS='$YOUR_WALLET >> $HOME/.bash_profile
+   	echo -e '\n\e[42mГотово\e[0m\n'
+   	echo "-----------------------------------------------------------------------------"
    fi
-   sleep 1
-   echo 'ADDRESS='$YOUR_WALLET >> $HOME/.bash_profile
-   echo -e '\n\e[42mГотово\e[0m\n'
-   echo "-----------------------------------------------------------------------------"
    
    #Проверяем наличие ноды, если нет - то качаем
    if [ -z $VERSION_NODE ]; then 
