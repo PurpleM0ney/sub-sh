@@ -64,8 +64,6 @@ if [ -f ./latest ]; then
         sleep 2
         screen -r subInit -X stuff  "^M" 
         sleep 2
-        screen -X -S subInit quit
-        sleep 2
    
         echo "-----------------------------------------------------------------------------"
         echo -e "\n\e[42mThe node has been successfully updated! The current version is $CUR_VER\e[0m\n"
