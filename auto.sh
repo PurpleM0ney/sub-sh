@@ -28,18 +28,13 @@ bash_profile=$HOME/.bash_profile
    	read -p "Дайте имя вашей ноде: " NODE_NAME
    	sleep 1
    	echo 'NODENAME='$NODE_NAME >> $HOME/.bash_profile
-   	echo -e '\n\e[42mГотово\e[0m\n'
-   	echo "-----------------------------------------------------------------------------"
-   	sleep 1
    fi
    
    #Проверяем наличие кощеля
    if [ -z $CHCK_ADDRESS ]; then
 	read -p "Введите адрес кошелька : " YOUR_WALLET
    	sleep 1
-  	 echo 'ADDRESS='$YOUR_WALLET >> $HOME/.bash_profile
-   	echo -e '\n\e[42mГотово\e[0m\n'
-   	echo "-----------------------------------------------------------------------------"
+  	echo 'ADDRESS='$YOUR_WALLET >> $HOME/.bash_profile
    fi
    
    #Проверяем наличие ноды, если нет - то качаем
