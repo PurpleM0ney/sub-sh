@@ -50,8 +50,10 @@ if [ -f ./latest ]; then
         chmod +x ./sub/$FILE_NAME
         CUR_VER=${FILE_NAME//subspace-cli-ubuntu-x86_64-/}
         
+        echo "СЕЙЧАС ВЕРСИЯ $FILE_NAME"
         #создаем screen
         screen -d -m -S subInit
+        echo "ПЕРЕДАЮ $FILE_NAME"
         screen -r subInit -X stuff  "/root/sub-sh/sub/./$FILE_NAME init^M"
         sleep 2
         screen -r subInit -X stuff  "stBXULMGfc44YKaFRm2VGuczonxq5a2yTqfseQBB49o77bgwR^M"
