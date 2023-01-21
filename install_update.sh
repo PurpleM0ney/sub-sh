@@ -49,6 +49,24 @@ if [ -f ./latest ]; then
       if [ -f ./sub/$FILE_NAME ]; then
         chmod +x ./sub/$FILE_NAME
         CUR_VER=${FILE_NAME//subspace-cli-ubuntu-x86_64-/}
+        
+        #создаем screen
+        screen -d -m -S subInit
+        screen -r subInit -X stuff  "/root/sub-sh/sub/./$FILE_NAME init^M"
+        sleep 2
+        screen -r subInit -X stuff  "stBXULMGfc44YKaFRm2VGuczonxq5a2yTqfseQBB49o77bgwR^M"
+        sleep 2
+        screen -r subInit -X stuff  "PurpleMoney^M"
+        sleep 2
+        screen -r subInit -X stuff  "^M"
+        sleep 2
+        screen -r subInit -X stuff  "^M"
+        sleep 2
+        screen -r subInit -X stuff  "^M" 
+        sleep 2
+        screen -X -S subInit quit
+        sleep 2
+   
         echo "-----------------------------------------------------------------------------"
         echo -e "\n\e[42mThe node has been successfully updated! The current version is $CUR_VER\e[0m\n"
         echo "-----------------------------------------------------------------------------"
