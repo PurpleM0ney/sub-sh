@@ -19,11 +19,11 @@ if [ -f "$bash_profile" ]; then
    #Получаем ИМЯ и АДРЕС пользователя
    CHCK_NAME=$(cat ~/.bash_profile | grep NAME)
    CHCK_NAME=${CHCK_NAME//NODENAME=/}
-   #CHCK_ADDRESS=$(cat ~/.bash_profile | grep ADDRESS)
-   #CHCK_ADDRESS=${CHCK_ADDRESS//ADDRESS=/}
+   CHCK_ADDRESS=$(cat ~/.bash_profile | grep ADDRESS)
+   CHCK_ADDRESS=${CHCK_ADDRESS//ADDRESS=/}
    
    #Проверяем наличие имени
-   if [ -z $CHCK_NAME ]; then
+   if [! -z $CHCK_NAME ]; then
    read -p "Дайте имя вашей ноде: " NODE_NAME
    fi
    sleep 1
@@ -33,7 +33,7 @@ if [ -f "$bash_profile" ]; then
    sleep 1
    
    #Проверяем наличие кощеля
-   if [ -z $CHCK_ADDRESS ]; then
+   if [! -z $CHCK_ADDRESS ]; then
 	read -p "Введите адрес кошелька : " YOUR_WALLET
    fi
    sleep 1
