@@ -21,6 +21,8 @@ if [ -f "$bash_profile" ]; then
    CHCK_NAME=${CHCK_NAME//NODENAME=/}
    CHCK_ADDRESS=$(cat ~/.bash_profile | grep ADDRESS)
    CHCK_ADDRESS=${CHCK_ADDRESS//ADDRESS=/}
+   echo CHCK_NAME
+   echo CHCK_ADDRESS
    
    #Проверяем наличие имени
    if [! -z $CHCK_NAME ]; then
