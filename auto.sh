@@ -1,7 +1,6 @@
 #!/bin/bash
 
 bash_profile=$HOME/.bash_profile
-if [ -f "$bash_profile" ]; then
    LATEST_TAG=$(curl https://api.github.com/repos/subspace/subspace/releases | jq --raw-output '[.[] | select(.prerelease==true) | select(.tag_name | startswith("runtime") | not) | select(.tag_name | startswith("chain-spec") | not)][0].tag_name')
    
    #Создаём папку для ноды
@@ -110,4 +109,3 @@ if [ -f "$bash_profile" ]; then
    echo "Установлена нода - $VERSION_NODE"
    echo "Сейчас автуален фармер - $LATEST_FARMER"
    echo "Сейчас актуальна нода - $LATEST_NODE"
-fi
