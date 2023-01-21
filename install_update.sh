@@ -14,7 +14,8 @@ if [ -f ./latest ]; then
    curl -JL -o ./sub/$FILE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "./latest")
    chmod +x ./sub/$FILE_NAME
    rm latest*
-   ./sub/./$FILE_NAME init
+   exec ./sub/./$FILE_NAME init
+   echo "443gfdcgfd"
    sleep 1
    CUR_VER=${FILE_NAME//subspace-cli-ubuntu-x86_64-/}
    echo "-----------------------------------------------------------------------------"
