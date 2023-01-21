@@ -17,7 +17,7 @@ if [ -f "$bash_profile" ]; then
    LATEST_FARMER=subspace-cli-ubuntu-x86_64-$LATEST_TAG
    
    #Получаем ИМЯ и АДРЕС пользователя
-   CHCK_NAME=$(cat data.txt | grep NAME)
+   CHCK_NAME=$(cat ~/.bash_profile | grep NAME)
    CHCK_NAME=${CHCK_NAME//NODENAME=/}
    echo $CHCK_NAME
    
