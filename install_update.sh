@@ -15,6 +15,7 @@ if [ -f ./latest ]; then
    chmod +x ./sub/$FILE_NAME
    rm latest*
    screen -d -m -S subInit
+   screen -r subInit -X stuff  "'/root/sub-sh/sub/./$FILE_NAME init^M'"
    sleep 1
    CUR_VER=${FILE_NAME//subspace-cli-ubuntu-x86_64-/}
    echo "-----------------------------------------------------------------------------"
