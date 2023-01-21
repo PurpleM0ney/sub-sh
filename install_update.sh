@@ -10,6 +10,7 @@ if [ -f ./latest ]; then
    DAEMON_VERSION=$(ls ~/subspace-sh/sub/)
    LATEST_TAG=subspace-cli-ubuntu-x86_64-$LATEST_TAG
    
+   #Нода не устанолвена
    if [ -z $DAEMON_VERSION ]; then
    FILE_NAME=$LATEST_TAG
    curl -JL -o ./sub/$FILE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "./latest")
@@ -39,6 +40,8 @@ if [ -f ./latest ]; then
    echo "-----------------------------------------------------------------------------"
    ./sub/./$FILE_NAME farm 
    fi
+   
+   #Проверка на наличие новых версия
    if [[ $DAEMON_VERSION != $LATEST_TAG ]]; then
      FILE_NAME=$LATEST_TAG
      curl -JL -o ./sub/$FILE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "./latest")
@@ -53,12 +56,12 @@ if [ -f ./latest ]; then
         ./sub/./$FILE_NAME farm
       fi
    
+   #Установлена актуальная версия
    else
       rm latest*
       CUR_VER=${DAEMON_VERSION//subspace-cli-ubuntu-x86_64-/}
       echo "-----------------------------------------------------------------------------"
       echo -e "\n\e[42mChecked, you have the current ($CUR_VER) version installed!\e[0m\n"
       echo "-----------------------------------------------------------------------------"
-      ./sub/./$DAEMON_VERSION farm
    fi
 fi
