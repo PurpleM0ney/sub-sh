@@ -17,13 +17,16 @@ if [ -f "$bash_profile" ]; then
    LATEST_FARMER=subspace-cli-ubuntu-x86_64-$LATEST_TAG
    
    #Получаем ИМЯ и АДРЕС пользователя
-    
+   CHCK_NAME=$(cat data.txt | grep NAME)
+   CHCK_NAME=${CHCK_NAME//NODENAME=/}
+   echo $CHCK_NAME
+   
    #Проверяем наличие имени
    if [ ! $NODE_NAME ]; then
    read -p "Дайте имя вашей ноде: " NODE_NAME
    fi
    sleep 1
-   echo 'export SUBSPACE_NODENAME='$NODE_NAME >> $HOME/.bash_profile
+   echo 'NODENAME='$NODE_NAME >> $HOME/.bash_profile
    echo -e '\n\e[42mГотово\e[0m\n'
    echo "-----------------------------------------------------------------------------"
    source ~/.bash_profile
