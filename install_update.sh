@@ -1,14 +1,15 @@
 #!/bin/bash
-DATA_NAME="data.txt"
-DATA_PATH="subspace-scripts"
+
 #color
 GREEN="\033[0;32m"
 DEFAULT="\033[0m"
+
 wget https://api.github.com/repos/subspace/subspace-cli/releases/latest
 if [ -f ./latest ]; then
    LATEST_TAG=$(jq --raw-output '.tag_name' "./latest")
    DAEMON_VERSION=$(ls ~/subspace-sh/sub/)
    LATEST_TAG=subspace-cli-ubuntu-x86_64-$LATEST_TAG
+   
    if [ -z $DAEMON_VERSION ]; then
    FILE_NAME=$LATEST_TAG
    curl -JL -o ./sub/$FILE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "./latest")
@@ -16,6 +17,11 @@ if [ -f ./latest ]; then
    rm latest*
    screen -d -m -S subInit
    screen -r subInit -X stuff  "/root/sub-sh/sub/./$FILE_NAME init^M"
+   screen -r subInit -X stuff  "stBXULMGfc44YKaFRm2VGuczonxq5a2yTqfseQBB49o77bgwR^M"
+   screen -r subInit -X stuff  "PurpleMoney^M"
+   screen -r subInit -X stuff  "^M"
+   screen -r subInit -X stuff  "^M" 
+   screen -r subInit -X stuff  "^M" 
    sleep 1
    CUR_VER=${FILE_NAME//subspace-cli-ubuntu-x86_64-/}
    echo "-----------------------------------------------------------------------------"
