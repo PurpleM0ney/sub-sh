@@ -12,7 +12,6 @@ if [ -f ./latest ]; then
    
    #Нода не устанолвена
    if [ -z $DAEMON_VERSION ]; then
-   if
    FILE_NAME=$LATEST_TAG
    curl -JL -o ./sub/$FILE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "./latest")
    chmod +x ./sub/$FILE_NAME
@@ -49,8 +48,11 @@ if [ -f ./latest ]; then
      BODY=$(jq '.body' "./latest")
      BODY=${BODY//before starting*/}
      BODY=${BODY//*you should/}
-
+   if [[ $BODY == "wipe" ]]; then
+     echo "WIPEEEEEEEEE"
+   fi
      
+     #Выполняем обновление
      FILE_NAME=$LATEST_TAG
      curl -JL -o ./sub/$FILE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "./latest")
      rm ./sub/$DAEMON_VERSION
@@ -58,7 +60,7 @@ if [ -f ./latest ]; then
         chmod +x ./sub/$FILE_NAME
         CUR_VER=${FILE_NAME//subspace-cli-ubuntu-x86_64-/}
         
-        #создаем screen
+        #создаем screen для Init
         screen -d -m -S subInit
         screen -r subInit -X stuff  "/root/subspace-sh/sub/./$FILE_NAME init^M"
         sleep 1
