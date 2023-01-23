@@ -48,7 +48,7 @@ if [ -f ./latest ]; then
      BODY=$(jq '.body' "./latest")
      #BODY=${BODY//before starting*/}
      #BODY_NEW=${BODY//*you should/}
-     BODY=$(grep -o wipe)
+     BODY=$(grep -w wipe)
      echo $BODY
    if [ "$BODY" = 'wipe' ]; then
      echo "WIPEEEEEEEEE"
