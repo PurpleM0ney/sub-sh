@@ -45,10 +45,8 @@ if [ -f ./latest ]; then
      BODY=$(jq '.body' "./latest")
      BODY=${BODY//before starting*/}
      BODY=${BODY//*you should/}
-     echo $BODY >> $HOME/.bash_profile
-     sed 'wipe' $HOME/.bash_profile
      
-   if [ "$BODY_NEW" = 'wipe' ]; then
+   if [[ "$BODY" = 'wipe' ]]; then
      echo "WIPEEEEEEEEE"
    fi
      
