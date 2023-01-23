@@ -46,7 +46,7 @@ if [ -f ./latest ]; then
      BODY=${BODY//before starting*/}
      BODY_NEW=${BODY//*you should/}
      echo $BODY >> $HOME/.bash_profile
-     BODY_NEW=${sed 'wipe' $HOME/.bash_profile}
+     sed 'wipe' $HOME/.bash_profile
      
    if [ "$BODY_NEW" = 'wipe' ]; then
      echo "WIPEEEEEEEEE"
