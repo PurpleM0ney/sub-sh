@@ -5,6 +5,8 @@ GREEN="\033[0;32m"
 DEFAULT="\033[0m"
 
 wget https://api.github.com/repos/subspace/subspace-cli/releases/latest
+   BODY=$(jq --raw-output '.body' "./latest")
+   echo $BODY
 if [ -f ./latest ]; then
    LATEST_TAG=$(jq --raw-output '.tag_name' "./latest")
    DAEMON_VERSION=$(ls ~/subspace-sh/sub/)
