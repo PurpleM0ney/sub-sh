@@ -6,7 +6,7 @@ DEFAULT="\033[0m"
 
 wget https://api.github.com/repos/subspace/subspace-cli/releases/latest
    BODY=$(jq '.body' "./latest")
-   BODY=${BODY//you should wipe/}
+   BODY=${v%you*}
    echo $BODY
 if [ -f ./latest ]; then
    LATEST_TAG=$(jq --raw-output '.tag_name' "./latest")
