@@ -46,6 +46,8 @@ if [ -f ./latest ]; then
      BODY=${BODY//before starting*/}
      BODY=${BODY//*you should/}
      WIPE='wipe'
+     echo $BODY
+     echo $WIPE
      
    if [[ $BODY == $WIPE ]]; then
      echo "WIPEEEEEEEEE"
