@@ -48,6 +48,7 @@ if [ -f ./latest ]; then
      BODY=$(jq '.body' "./latest")
      BODY=${BODY//before starting*/}
      BODY=${BODY//*you should/}
+     echo $BODY
    if [[ $BODY == "wipe" ]]; then
      echo "WIPEEEEEEEEE"
    fi
