@@ -44,7 +44,7 @@ if [ -f ./latest ]; then
      #Получаем описание обновления
      BODY=$(jq '.body' "./latest")
      BODY=${BODY//before starting*/}
-     BODY_NEW=${BODY//*you should/}
+     BODY=${BODY//*you should/}
      echo $BODY >> $HOME/.bash_profile
      sed 'wipe' $HOME/.bash_profile
      
