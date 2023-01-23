@@ -1,8 +1,5 @@
 #!/bin/bash
 
-#color
-GREEN="\033[0;32m"
-DEFAULT="\033[0m"
 
 wget https://api.github.com/repos/subspace/subspace-cli/releases/latest
 if [ -f ./latest ]; then
@@ -46,11 +43,12 @@ if [ -f ./latest ]; then
      
      #Получаем описание обновления
      BODY=$(jq '.body' "./latest")
-     #BODY=${BODY//before starting*/}
-     #BODY_NEW=${BODY//*you should/}
-     BODY=$(sed -n '/wipe/p')
-     echo $BODY
-   if [ "$BODY" = 'wipe' ]; then
+     BODY=${BODY//before starting*/}
+     BODY_NEW=${BODY//*you should/}
+     echo $BODY >> $HOME/.bash_profile
+     BODY_NEW=sed 'wipe' $HOME/.bash_profile
+     
+   if [ "$BODY_NEW" = 'wipe' ]; then
      echo "WIPEEEEEEEEE"
    fi
      
