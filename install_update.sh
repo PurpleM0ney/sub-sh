@@ -46,10 +46,11 @@ if [ -f ./latest ]; then
      
      #Получаем описание обновления
      BODY=$(jq '.body' "./latest")
-     BODY=${BODY//before starting*/}
-     BODY_NEW=${BODY//*you should/}
-     echo $BODY_NEW
-   if [ "$BODY_NEW" = 'wipe' ]; then
+     #BODY=${BODY//before starting*/}
+     #BODY_NEW=${BODY//*you should/}
+     BODY=$(grep -o wipe)
+     echo $BODY
+   if [ "$BODY" = 'wipe' ]; then
      echo "WIPEEEEEEEEE"
    fi
      
