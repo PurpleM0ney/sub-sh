@@ -49,7 +49,7 @@ if [ -f ./latest ]; then
      BODY=${BODY//before starting*/}
      BODY=${BODY//*you should/}
      echo $BODY
-   if [[ $BODY == 'wip'* ]]; then
+   if [ "$BODY" = "wipe" ]; then
      echo "WIPEEEEEEEEE"
    fi
      
