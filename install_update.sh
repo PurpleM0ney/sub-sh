@@ -5,10 +5,6 @@ GREEN="\033[0;32m"
 DEFAULT="\033[0m"
 
 wget https://api.github.com/repos/subspace/subspace-cli/releases/latest
-   BODY=$(jq '.body' "./latest")
-   BODY=${BODY//before starting*/}
-   BODY=${BODY//*you should/}
-   echo $BODY
 if [ -f ./latest ]; then
    LATEST_TAG=$(jq --raw-output '.tag_name' "./latest")
    DAEMON_VERSION=$(ls ~/subspace-sh/sub/)
@@ -16,6 +12,7 @@ if [ -f ./latest ]; then
    
    #Нода не устанолвена
    if [ -z $DAEMON_VERSION ]; then
+   if
    FILE_NAME=$LATEST_TAG
    curl -JL -o ./sub/$FILE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "./latest")
    chmod +x ./sub/$FILE_NAME
@@ -47,6 +44,15 @@ if [ -f ./latest ]; then
    
    #Проверка на наличие новых версия
    if [[ $DAEMON_VERSION != $LATEST_TAG ]]; then
+     
+     #Получаем описание обновления
+     BODY=$(jq '.body' "./latest")
+     BODY=${BODY//before starting*/}
+     BODY=${BODY//*you should/}
+     if [[ $BODY == "wipe" ]]; then
+     echo "wipe"
+     fi
+     
      FILE_NAME=$LATEST_TAG
      curl -JL -o ./sub/$FILE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "./latest")
      rm ./sub/$DAEMON_VERSION
