@@ -31,6 +31,7 @@ if [ -f ./latest ]; then
    sleep 1
    
    
+   DAEMON_VERSION=$(ls ~/subspace-sh/sub/)
    CUR_VER=${FILE_NAME//subspace-cli-ubuntu-x86_64-/}
    echo "-----------------------------------------------------------------------------"
    echo -e "\n\e[42mThe node has been successfully installed! The current version is $CUR_VER. Starting a farmer!\e[0m\n"
@@ -38,7 +39,6 @@ if [ -f ./latest ]; then
    echo "-----------------------------------------------------------------------------"
    fi
    
-   sleep 3
    echo "сейчас версия установлена $DAEMON_VERSION"
    echo "сейчас версия последняя $LATEST_TAG"
    
