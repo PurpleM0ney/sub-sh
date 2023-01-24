@@ -40,6 +40,8 @@ if [ -f ./latest ]; then
    
    #Проверка на наличие новых версия
    if [[ $DAEMON_VERSION != $LATEST_TAG ]]; then
+   
+     FILE_NAME=$LATEST_TAG
      
      #Получаем описание обновления
      BODY=$(jq '.body' "./latest")
@@ -48,11 +50,13 @@ if [ -f ./latest ]; then
      BODY=""
      
    if [[ ! -z $BODY ]]; then
-     echo "WIPEEEEEEEEE"
+     ./sub/./$DAEMON_VERSION wipe
+     echo "-----------------------------------------------------------------------------"
+     echo -e "\n\e[42mWipe successful!!\e[0m\n"
+     echo "-----------------------------------------------------------------------------" 
    fi
      
      #Выполняем обновление
-     FILE_NAME=$LATEST_TAG
      curl -JL -o ./sub/$FILE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "./latest")
      rm ./sub/$DAEMON_VERSION
       if [ -f ./sub/$FILE_NAME ]; then
