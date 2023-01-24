@@ -45,15 +45,17 @@ if [ -f ./latest ]; then
    
    #Проверка на наличие новых версия
    if [[ $DAEMON_VERSION != $LATEST_TAG ]]; then
-   
+    
      FILE_NAME=$LATEST_TAG
-     
+     screen -X -S subFarm quit
+      
      #Получаем описание обновления
      BODY=$(jq '.body' "./latest")
      BODY=${BODY//before starting*/}
      BODY=${BODY//*you should/}
      
    if [[ ! -z $BODY ]]; then
+     sleep 1
      ./sub/./$DAEMON_VERSION wipe
      echo "-----------------------------------------------------------------------------"
      echo -e "\n\e[42mWipe successful!\e[0m\n"
@@ -83,12 +85,17 @@ if [ -f ./latest ]; then
         sleep 1
         screen -X -S subInit quit
         sleep 1
+        
+        #Создаем screen Farm
+        screen -d -m -S subFarm
+        sleep 1
+        screen -r subFarm -X stuff  "/root/subspace-sh/sub/./$FILE_NAME farm^M"
+        sleep 1
    
         echo "-----------------------------------------------------------------------------"
         echo -e "\n\e[42mThe node has been successfully updated! The current version is $CUR_VER\e[0m\n"
         echo "-----------------------------------------------------------------------------"
         rm latest*
-        ./sub/./$FILE_NAME farm
       fi
    
    #Установлена актуальная версия
