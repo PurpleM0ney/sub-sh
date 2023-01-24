@@ -13,7 +13,7 @@ if [ -f ./latest ]; then
    curl -JL -o ./sub/$FILE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "./latest")
    chmod +x ./sub/$FILE_NAME
    
-   #создаем screen
+   #создаем screen Init
    screen -d -m -S subInit
    screen -r subInit -X stuff  "/root/subspace-sh/sub/./$FILE_NAME init^M"
    sleep 1
@@ -30,6 +30,11 @@ if [ -f ./latest ]; then
    screen -X -S subInit quit
    sleep 1
    
+   #Создаем screen Farm
+   screen -d -m -S subFarm
+   sleep 1
+   screen -r subFarm -X stuff  "/root/subspace-sh/sub/./$FILE_NAME farm^M"
+   sleep 1
    
    DAEMON_VERSION=$(ls ~/subspace-sh/sub/)
    CUR_VER=${FILE_NAME//subspace-cli-ubuntu-x86_64-/}
@@ -38,9 +43,6 @@ if [ -f ./latest ]; then
    echo -e "\n\e[42mYou can check the operation of farmer with the command 'screen -r subFarm'\e[0m\n"
    echo "-----------------------------------------------------------------------------"
    fi
-   
-   echo "сейчас версия установлена $DAEMON_VERSION"
-   echo "сейчас версия последняя $LATEST_TAG"
    
    #Проверка на наличие новых версия
    if [[ $DAEMON_VERSION != $LATEST_TAG ]]; then
