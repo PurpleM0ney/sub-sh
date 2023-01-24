@@ -35,7 +35,9 @@ if [ -f ./latest ]; then
    echo "-----------------------------------------------------------------------------"
    echo -e "\n\e[42mThe node has been successfully installed! The current version is $CUR_VER. Starting a farmer!\e[0m\n"
    echo "-----------------------------------------------------------------------------"
-   ./sub/./$FILE_NAME farm 
+   
+   screen -d -m -S subFarm
+   screen -r subInit -X stuff  "/root/subspace-sh/sub/./$FILE_NAME farm^M"
    fi
    
    #Проверка на наличие новых версия
