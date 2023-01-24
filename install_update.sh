@@ -45,6 +45,7 @@ if [ -f ./latest ]; then
      BODY=$(jq '.body' "./latest")
      BODY=${BODY//before starting*/}
      BODY=${BODY//*you should/}
+     BODY=""
      
    if [[ ! -z $BODY ]]; then
      echo "WIPEEEEEEEEE"
