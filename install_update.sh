@@ -31,13 +31,15 @@ if [ -f ./latest ]; then
    screen -X -S subInit quit
    sleep 1
    
+   screen -d -m -S subFarm
+   sleep 1
+   screen -r subInit -X stuff  "/root/subspace-sh/sub/./$FILE_NAME farm^M"
+   
    CUR_VER=${FILE_NAME//subspace-cli-ubuntu-x86_64-/}
    echo "-----------------------------------------------------------------------------"
    echo -e "\n\e[42mThe node has been successfully installed! The current version is $CUR_VER. Starting a farmer!\e[0m\n"
+   echo -e "\n\e[42mYou can check the operation of farmer with the command 'screen -r subFarm'\e[0m\n"
    echo "-----------------------------------------------------------------------------"
-   
-   screen -d -m -S subFarm
-   screen -r subInit -X stuff  "/root/subspace-sh/sub/./$FILE_NAME farm^M"
    fi
    
    #Проверка на наличие новых версия
