@@ -51,7 +51,7 @@ if [ -f ./latest ]; then
    if [[ ! -z $BODY ]]; then
      ./sub/./$DAEMON_VERSION wipe
      echo "-----------------------------------------------------------------------------"
-     echo -e "\n\e[42mWipe successful!!\e[0m\n"
+     echo -e "\n\e[42mWipe successful!\e[0m\n"
      echo "-----------------------------------------------------------------------------" 
    fi
      
