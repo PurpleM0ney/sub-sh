@@ -40,7 +40,6 @@ if [ -f ./latest ]; then
    CUR_VER=${FILE_NAME//subspace-cli-ubuntu-x86_64-/}
    echo "-----------------------------------------------------------------------------"
    echo -e "\n\e[42mThe node has been successfully installed! The current version is $CUR_VER. Starting a farmer!\e[0m\n"
-   echo -e "\n\e[42mYou can check the operation of farmer with the command \e[7mscreen -r subFarm cat\e[0m"
    echo "-----------------------------------------------------------------------------"
    fi
    
