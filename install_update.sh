@@ -31,9 +31,6 @@ if [ -f ./latest ]; then
    screen -X -S subInit quit
    sleep 1
    
-   screen -d -m -S subFarm
-   sleep 1
-   screen -r subInit -X stuff  "/root/subspace-sh/sub/./$FILE_NAME farm^M"
    
    CUR_VER=${FILE_NAME//subspace-cli-ubuntu-x86_64-/}
    echo "-----------------------------------------------------------------------------"
