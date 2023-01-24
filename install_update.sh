@@ -12,7 +12,6 @@ if [ -f ./latest ]; then
    FILE_NAME=$LATEST_TAG
    curl -JL -o ./sub/$FILE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "./latest")
    chmod +x ./sub/$FILE_NAME
-   rm latest*
    
    #создаем screen
    screen -d -m -S subInit
