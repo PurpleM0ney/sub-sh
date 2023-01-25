@@ -10,21 +10,20 @@ if [ -z $DATA ]; then
    echo "-----------------------------------------------------------------------------"
    read -p "Name your node: " NODE_NAME
    sleep 1
-   echo $NODE_NAME >> ~/SubSpace/data.txt
+   echo "NAME="$NODE_NAME >> ~/SubSpace/data.txt
       
    echo "-----------------------------------------------------------------------------"
    read -p "Enter wallet address: " YOUR_WALLET
    sleep 1
-   echo $YOUR_WALLET >> ~/SubSpace/data.txt
+   echo "WALLET="$YOUR_WALLET >> ~/SubSpace/data.txt
    echo "-----------------------------------------------------------------------------"
    echo -e '\n\e[42mDone!\e[0m\n'
       
 else
    source ~/SubSpace/data.txt
-   #NAME=$(head -n 1 ~/SubSpace/data.txt | tail -n 1)
-   #WALLET=$(head -n 2 ~/SubSpace/data.txt | tail -n 1)
-   echo "$NAME"
-   echo "$WALLET"
+   echo "ваше имя $NAME"
+   echo "ваш кошелек $WALLET"
+   echo "ваш кошелек $WALLET и имя $NAME + текст $NAME и $WALLET"
 fi
 
 #------------------- Блок с проверкой установки ноды и ее установкой (если не найдена) ----------------------------
