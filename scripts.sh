@@ -74,7 +74,7 @@ if [ -f ./latest ]; then
    sleep 1
    screen -r subInit -X stuff  "^M" 
    sleep 1
-   #screen -X -S subInit quit
+   screen -X -S subInit quit
    sleep 1
    
    #Создаем screen Farm
@@ -90,6 +90,7 @@ if [ -f ./latest ]; then
    echo -e "You can check the operation of farmer with the command: \n\e[31mscreen -r subFarm\e[0m\n"
    echo "-----------------------------------------------------------------------------"
    fi
+   
    
 #------------------- Блок с проверкой на наличие новых версий и последующим обновлением ----------------------------
    if [[ $DAEMON_VERSION != $LATEST_TAG ]]; then
