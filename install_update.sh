@@ -21,8 +21,8 @@ if [ -z $DATA ]; then
       
 else
    source ~/SubSpace/data.txt
-   NAME=$(head -n 1 ~/SubSpace/data.txt | tail -n 1)
-   WALLET=$(head -n 2 ~/SubSpace/data.txt | tail -n 1)
+   #NAME=$(head -n 1 ~/SubSpace/data.txt | tail -n 1)
+   #WALLET=$(head -n 2 ~/SubSpace/data.txt | tail -n 1)
    echo "$NAME"
    echo "$WALLET"
 fi
