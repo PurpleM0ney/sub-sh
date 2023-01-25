@@ -33,9 +33,7 @@ fi
 
 wget https://api.github.com/repos/subspace/subspace-cli/releases/latest
 if [ -f ./latest ]; then
-   sleep 2
    LATEST_TAG=$(jq --raw-output '.tag_name' "./latest")
-   echo $LATEST_TAG
    DAEMON_VERSION=$(ls ~/SubSpace/NODE/)
    LATEST_TAG=subspace-cli-ubuntu-x86_64-$LATEST_TAG
    
@@ -54,6 +52,9 @@ if [ -f ./latest ]; then
          sudo yum update -y
          sudo yum install -y jq curl unzip wget screen
     fi
+   
+   LATEST_TAG=$(jq --raw-output '.tag_name' "./latest")
+   LATEST_TAG=subspace-cli-ubuntu-x86_64-$LATEST_TAG
    
    FILE_NAME=$LATEST_TAG
    curl -JL -o ./$FILE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "./latest")
