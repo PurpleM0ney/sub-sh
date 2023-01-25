@@ -14,7 +14,7 @@
 ###### `bash subspace-sh/install.sh`
 
 ******************************************************
-![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) ` #f03c15`
+### `IMPORTANT!`
 #### Enter your wallet carefully when prompted. The wallet is required both for the initial launch of the node and after the update.
 #### If you enter it incorrectly - the script will not be able to start the node and errors will appear (in the future I plan to add a check for correctness of the purse)
 
