@@ -35,7 +35,7 @@ if [ -f ~/SubSpace/latest ]; then
    #Нода не устанолвена
    if [ -z $DAEMON_VERSION ]; then
    FILE_NAME=$LATEST_TAG
-   curl -JL -o ~/SubSpace/$FILE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "~/SubSpace/latest")
+   curl -JL -o ~/SubSpace/$FILE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "./latest")
    chmod +x ~/SubSpace/$FILE_NAME
    
    #создаем screen Init
@@ -79,7 +79,7 @@ if [ -f ~/SubSpace/latest ]; then
      screen -X -S subFarm quit
       
      #Получаем описание обновления
-     BODY=$(jq '.body' "~/SubSpace/latest")
+     BODY=$(jq '.body' "./latest")
      BODY=${BODY//before starting*/}
      BODY=${BODY//*you should/}
      
@@ -92,7 +92,7 @@ if [ -f ~/SubSpace/latest ]; then
    fi
      
      #Выполняем обновление
-     curl -JL -o ./sub/$FILE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "~/SubSpace/latest")
+     curl -JL -o ./sub/$FILE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "./latest")
      rm ~/SubSpace/$DAEMON_VERSION
       if [ -f ~/SubSpace/$FILE_NAME ]; then
         chmod +x ~/SubSpace/$FILE_NAME
