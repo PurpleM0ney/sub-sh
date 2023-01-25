@@ -1,5 +1,8 @@
 #!/bin/bash
-
+   DATA=$(ls ~/SubSpace/ | grep data)
+   if [ -z $DATA ]; then
+      echo "DATA не найдена"
+   fi
 
 wget https://api.github.com/repos/subspace/subspace-cli/releases/latest
 if [ -f ./latest ]; then
