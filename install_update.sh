@@ -21,9 +21,6 @@ if [ -z $DATA ]; then
       
 else
    source ~/SubSpace/data.txt
-   echo "ваше имя $NAME"
-   echo "ваш кошелек $WALLET"
-   echo "ваш кошелек $WALLET и имя $NAME + текст $NAME и $WALLET"
 fi
 
 #------------------- Блок с проверкой установки ноды и ее установкой (если не найдена) ----------------------------
@@ -44,9 +41,9 @@ if [ -f ./latest ]; then
    screen -d -m -S subInit
    screen -r subInit -X stuff  "/root/subspace-sh/sub/./$FILE_NAME init^M"
    sleep 1
-   screen -r subInit -X stuff  "stBXULMGfc44YKaFRm2VGuczonxq5a2yTqfseQBB49o77bgwR^M"
+   screen -r subInit -X stuff  "$WALLET^M"
    sleep 1
-   screen -r subInit -X stuff  "PurpleMoney^M"
+   screen -r subInit -X stuff  "$NAME^M"
    sleep 1
    screen -r subInit -X stuff  "^M"
    sleep 1
@@ -54,8 +51,8 @@ if [ -f ./latest ]; then
    sleep 1
    screen -r subInit -X stuff  "^M" 
    sleep 1
-   screen -X -S subInit quit
-   sleep 1
+  # screen -X -S subInit quit
+  # sleep 1
    
    #Создаем screen Farm
    screen -d -m -S subFarm
@@ -101,9 +98,9 @@ if [ -f ./latest ]; then
         screen -d -m -S subInit
         screen -r subInit -X stuff  "/root/subspace-sh/sub/./$FILE_NAME init^M"
         sleep 1
-        screen -r subInit -X stuff  "stBXULMGfc44YKaFRm2VGuczonxq5a2yTqfseQBB49o77bgwR^M"
+        screen -r subInit -X stuff  "$WALLET^M"
         sleep 1
-        screen -r subInit -X stuff  "PurpleMoney^M"
+        screen -r subInit -X stuff  "$NAME^M"
         sleep 1
         screen -r subInit -X stuff  "^M"
         sleep 1
