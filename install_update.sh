@@ -9,14 +9,14 @@ if [ -z $DATA ]; then
    mv data.txt ~/SubSpace/
       
    echo "-----------------------------------------------------------------------------"
-   read -p "Name your node: " NODE_NAME
+   read -p "Name your node: " NAME
    sleep 1
-   echo "NAME="$NODE_NAME >> ~/SubSpace/data.txt
+   echo "NAME="$NAME >> ~/SubSpace/data.txt
       
    echo "-----------------------------------------------------------------------------"
-   read -p "Enter wallet address: " YOUR_WALLET
+   read -p "Enter wallet address: " WALLET
    sleep 1
-   echo "WALLET="$YOUR_WALLET >> ~/SubSpace/data.txt
+   echo "WALLET="$WALLET >> ~/SubSpace/data.txt
    echo "-----------------------------------------------------------------------------"
    echo -e '\n\e[42mDone!\e[0m\n'
       
