@@ -1,7 +1,7 @@
 #!/bin/bash
    DATA=$(ls ~/SubSpace/ | grep data)
    if [ -z $DATA ]; then
-      echo "DATA не найдена"
+      cat > data.txt
       
       else
       echo "DATA найдена"
