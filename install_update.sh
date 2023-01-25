@@ -1,27 +1,5 @@
 #!/bin/bash
 
-   DATA=$(ls /root/SubSpace/ | grep data)
-   if [ -z $DATA ]; then
-      cat > data.txt
-      #mv data.txt /root/SubSpace/
-  # else
-    #  echo "Data.txt есть"
-   fi
-   
-  # if [ ! $NODE_NAME ]; then
-	#   read -p "Дайте имя вашей ноде: " NODE_NAME
-  # fi
-  # sleep 1
- #  echo 'export SUBSPACE_NODENAME='$NODE_NAME >> $HOME/.bash_profile
- #  echo -e '\n\e[42mГотово\e[0m\n'
- #  echo "-----------------------------------------------------------------------------"
-  # if [ ! $YOUR_WALLET ]; then
-#	   read -p "Введите адрес кошелька : " YOUR_WALLET
-#   fi
-  # sleep 1
-  # echo 'export SUBSPACE_WALLET='$YOUR_WALLET >> $HOME/.bash_profile
-  # echo -e '\n\e[42mГотово\e[0m\n'
-  # echo "-----------------------------------------------------------------------------"
 
 wget https://api.github.com/repos/subspace/subspace-cli/releases/latest
 if [ -f ./latest ]; then
