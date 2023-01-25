@@ -92,7 +92,7 @@ if [ -f ~/SubSpace/latest ]; then
    fi
      
      #Выполняем обновление
-     curl -JL -o ./sub/$FILE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "./latest")
+     curl -JL -o ~/SubSpace/$FILE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "./latest")
      rm ~/SubSpace/$DAEMON_VERSION
       if [ -f ~/SubSpace/$FILE_NAME ]; then
         chmod +x ~/SubSpace/$FILE_NAME
