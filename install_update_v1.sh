@@ -34,18 +34,18 @@ fi
 wget https://api.github.com/repos/subspace/subspace-cli/releases/latest
 if [ -f ./latest ]; then
    LATEST_TAG=$(jq --raw-output '.tag_name' "./latest")
-   DAEMON_VERSION=$(ls ~/SubSpace/ | grep subspace)
+   DAEMON_VERSION=$(ls ~/SubSpace/)
    LATEST_TAG=subspace-cli-ubuntu-x86_64-$LATEST_TAG
    
    #Нода не устанолвена
    if [ -z $DAEMON_VERSION ]; then
    FILE_NAME=$LATEST_TAG
-   curl -JL -o ./$FILE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "./latest")
-   chmod +x ./$FILE_NAME
+   curl -JL -o ./NODE/$FILE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "./latest")
+   chmod +x ./NODE/$FILE_NAME
    
    #создаем screen Init
    screen -d -m -S subInit
-   screen -r subInit -X stuff  "~/SubSpace/./$FILE_NAME init^M"
+   screen -r subInit -X stuff  "~/SubSpace/NODE/./$FILE_NAME init^M"
    sleep 2
    screen -r subInit -X stuff  "$WALLET"
    sleep 2
@@ -65,10 +65,10 @@ if [ -f ./latest ]; then
    #Создаем screen Farm
    screen -d -m -S subFarm
    sleep 1
-   screen -r subFarm -X stuff  "~/SubSpace/./$FILE_NAME farm^M"
+   screen -r subFarm -X stuff  "~/SubSpace/NODE/./$FILE_NAME farm^M"
    sleep 1
    
-   DAEMON_VERSION=$(ls ~/SubSpace/ | grep subspace)
+   DAEMON_VERSION=$(ls ~/SubSpace/NODE/)
    CUR_VER=${FILE_NAME//subspace-cli-ubuntu-x86_64-/}
    echo "-----------------------------------------------------------------------------"
    echo -e "\n\e[42mThe node has been successfully installed! The current version is $CUR_VER. Starting a farmer!\e[0m\n"
