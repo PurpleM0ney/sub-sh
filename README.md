@@ -11,7 +11,7 @@
 
 #### Installation is done with 2 commands:
 ###### `git clone https://github.com/PurpleM0ney/subspace-sh.git`
-###### `bash subspace-sh/install.sh`
+###### `bash ~/subspace-sh/install.sh`
 
 ******************************************************
 ### `IMPORTANT!`
