@@ -14,11 +14,15 @@
 ###### `bash subspace-sh/install.sh`
 
 ******************************************************
+### IMPORTANT!
+#### Enter your wallet carefully when prompted. The wallet is required both for the initial launch of the node and after the update.
+#### If you enter it incorrectly - the script will not be able to start the node and errors will appear (in the future I plan to add a check for correctness of the purse)
+
+******************************************************
 #### The SubSpace directory contains an auto-update node script which is run via crontab once per hour.
 #### The auto-update script checks the version of the sources with subspace-cli version, if they are different, it downloads a new release.
 ******************************************************
-
-
-#### IMPORTANT!
-#### Enter your wallet carefully when prompted. The wallet is required both for the initial launch of the node and after the update.
-### If you enter it incorrectly - the script will not be able to start the node and errors will appear (in the future I plan to add a check for correctness of the purse)
+#### If you have any questions, write me:
+##### Discord: Purple Money#4488
+##### Telegram: @purplem0ney
+##### Twitter: @Purple_M0ney
