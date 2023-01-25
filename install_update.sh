@@ -22,7 +22,6 @@ if [ -z $DATA ]; then
       
 else
    source ~/SubSpace/data.txt
-   echo $WALLET
 fi
 
 #------------------- Блок с проверкой установки ноды и ее установкой (если не найдена) ----------------------------
@@ -45,17 +44,65 @@ if [ -f ./latest ]; then
    sleep 1
    screen -r subInit -X stuff  "$WALLET"
    sleep 1
-   screen -r subInit -X stuff  "^M"
+   screen -r subInit -X stuff  "$^M"
    sleep 1
    screen -r subInit -X stuff  "$NAME^M"
    sleep 1
-   if [ -f ./latest ]; then
+   screen -r subInit -X stuff  "^M"
+   sleep 1
+   screen -r subInit -X stuff  "^M"
+   sleep 1
+   screen -r subInit -X stuff  "^M" 
+   sleep 1
+   screen -X -S subInit quit
+   sleep 1
+   
+   #Создаем screen Farm
+   screen -d -m -S subFarm
+   sleep 1
+   screen -r subFarm -X stuff  "/root/subspace-sh/sub/./$FILE_NAME farm^M"
+   sleep 1
+   
+   DAEMON_VERSION=$(ls ~/subspace-sh/sub/)
+   CUR_VER=${FILE_NAME//subspace-cli-ubuntu-x86_64-/}
+   echo "-----------------------------------------------------------------------------"
+   echo -e "\n\e[42mThe node has been successfully installed! The current version is $CUR_VER. Starting a farmer!\e[0m\n"
+   echo "-----------------------------------------------------------------------------"
+   fi
+   
+#------------------- Блок с проверкой на наличие новых версий и последующим обновлением ----------------------------
+   if [[ $DAEMON_VERSION != $LATEST_TAG ]]; then
+    
+     FILE_NAME=$LATEST_TAG
+     screen -X -S subFarm quit
+      
+     #Получаем описание обновления
+     BODY=$(jq '.body' "./latest")
+     BODY=${BODY//before starting*/}
+     BODY=${BODY//*you should/}
+     
+   if [[ ! -z $BODY ]]; then
+     sleep 1
+     ./sub/./$DAEMON_VERSION wipe
+     echo "-----------------------------------------------------------------------------"
+     echo -e "\n\e[42mWipe successful!\e[0m\n"
+     echo "-----------------------------------------------------------------------------" 
+   fi
+     
+     #Выполняем обновление
+     curl -JL -o ./sub/$FILE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "./latest")
+     rm ./sub/$DAEMON_VERSION
+      if [ -f ./sub/$FILE_NAME ]; then
+        chmod +x ./sub/$FILE_NAME
+        CUR_VER=${FILE_NAME//subspace-cli-ubuntu-x86_64-/}
+        
+        #создаем screen для Init
         screen -d -m -S subInit
         screen -r subInit -X stuff  "/root/subspace-sh/sub/./$FILE_NAME init^M"
         sleep 1
         screen -r subInit -X stuff  "$WALLET"
         sleep 1
-        screen -r subInit -X stuff  "^M"
+        screen -r subInit -X stuff  "$^M"
         sleep 1
         screen -r subInit -X stuff  "$NAME^M"
         sleep 1
