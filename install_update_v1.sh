@@ -39,7 +39,7 @@ if [ -f ./latest ]; then
    #Нода не устанолвена
    if [ -z $DAEMON_VERSION ]; then
    FILE_NAME=$LATEST_TAG
-   curl -JL -o ./$FILE_NAME ~/SubSpace/NODE/ $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "./latest")
+   curl -JL -o ./$FILE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "./latest")
    mv $FILE_NAME ~/SubSpace/NODE/
    chmod +x ~/SubSpace/NODE/$FILE_NAME
    
