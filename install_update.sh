@@ -1,6 +1,9 @@
 #!/bin/bash
-   DATA=$(ls ~/SubSpace/ | grep data)
-   if [ -z $DATA ]; then
+
+#------------------- Блок проверкой наличия data.txt ----------------------------
+DATA=$(ls ~/SubSpace/ | grep data)
+
+if [ -z $DATA ]; then
    touch data.txt
    mv data.txt ~/SubSpace/
       
@@ -16,9 +19,11 @@
    echo "-----------------------------------------------------------------------------"
    echo -e '\n\e[42mDone!\e[0m\n'
       
-   else
+else
    echo "DATA найдена"
-   fi
+fi
+
+#------------------- Блок с проверкой установки ноды и ее установкой (если не найдена) ----------------------------
 
 wget https://api.github.com/repos/subspace/subspace-cli/releases/latest
 if [ -f ./latest ]; then
@@ -62,7 +67,8 @@ if [ -f ./latest ]; then
    echo "-----------------------------------------------------------------------------"
    fi
    
-   #Проверка на наличие новых версия
+#------------------- Блок с проверкой на наличие новых версий и последующим обновлением ----------------------------
+
    if [[ $DAEMON_VERSION != $LATEST_TAG ]]; then
     
      FILE_NAME=$LATEST_TAG
@@ -117,8 +123,9 @@ if [ -f ./latest ]; then
         rm latest*
       fi
    
-   #Установлена актуальная версия
-   else
+   #------------------- Блок в случае, если установлена актуальная версия ----------------------------
+  
+  else
       rm latest*
       CUR_VER=${DAEMON_VERSION//subspace-cli-ubuntu-x86_64-/}
       echo -e "\n\e[42mYou have the current ($CUR_VER) version installed!\e[0m\n"
