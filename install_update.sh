@@ -1,22 +1,23 @@
 #!/bin/bash
    DATA=$(ls ~/SubSpace/ | grep data)
    if [ -z $DATA ]; then
-      touch data.txt
-      mv data.txt ~/SubSpace/
+   touch data.txt
+   mv data.txt ~/SubSpace/
       
-      echo "-----------------------------------------------------------------------------"
-      read -p "Name your node: " NODE_NAME
-      sleep 1
-      echo 'NODENAME='$NODE_NAME >> ~/SubSpace/data.txt
+   echo "-----------------------------------------------------------------------------"
+   read -p "Name your node: " NODE_NAME
+   sleep 1
+   echo 'NODENAME='$NODE_NAME >> ~/SubSpace/data.txt
       
-      echo "-----------------------------------------------------------------------------"
-      read -p "Enter wallet address: " YOUR_WALLET
-      sleep 1
-      echo 'WALLET='$YOUR_WALLET >> ~/SubSpace/data.txt
-      echo "-----------------------------------------------------------------------------"
+   echo "-----------------------------------------------------------------------------"
+   read -p "Enter wallet address: " YOUR_WALLET
+   sleep 1
+   echo 'WALLET='$YOUR_WALLET >> ~/SubSpace/data.txt
+   echo "-----------------------------------------------------------------------------"
+   echo -e '\n\e[42mDone!\e[0m\n'
       
-      else
-      echo "DATA найдена"
+   else
+   echo "DATA найдена"
    fi
 
 wget https://api.github.com/repos/subspace/subspace-cli/releases/latest
