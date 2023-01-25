@@ -72,7 +72,7 @@ if [ -f ./latest ]; then
    sleep 1
    screen -r subInit -X stuff  "^M" 
    sleep 1
-   screen -X -S subInit quit
+   #screen -X -S subInit quit
    sleep 1
    
    #Создаем screen Farm
