@@ -31,7 +31,7 @@ fi
 
 #------------------- Блок с проверкой установки ноды и ее установкой (если не найдена) ----------------------------
 
-wget https://api.github.com/repos/subspace/subspace-cli/releases/latest
+wget -P ~/SubSpace/ https://api.github.com/repos/subspace/subspace-cli/releases/latest
 if [ -f ./latest ]; then
    LATEST_TAG=$(jq --raw-output '.tag_name' "./latest")
    DAEMON_VERSION=$(ls ~/SubSpace/NODE/)
