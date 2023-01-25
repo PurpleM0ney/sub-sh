@@ -44,7 +44,7 @@ if [ -f ./latest ]; then
    sleep 1
    screen -r subInit -X stuff  "$WALLET"
    sleep 1
-   screen -r subInit -X stuff  "$^M"
+   screen -r subInit -X stuff  "^M"
    sleep 1
    screen -r subInit -X stuff  "$NAME^M"
    sleep 1
@@ -83,7 +83,7 @@ if [ -f ./latest ]; then
      
    if [[ ! -z $BODY ]]; then
      sleep 1
-     ./sub/./$DAEMON_VERSION wipe
+     #./sub/./$DAEMON_VERSION wipe
      echo "-----------------------------------------------------------------------------"
      echo -e "\n\e[42mWipe successful!\e[0m\n"
      echo "-----------------------------------------------------------------------------" 
@@ -102,7 +102,7 @@ if [ -f ./latest ]; then
         sleep 1
         screen -r subInit -X stuff  "$WALLET"
         sleep 1
-        screen -r subInit -X stuff  "$^M"
+        screen -r subInit -X stuff  "^M"
         sleep 1
         screen -r subInit -X stuff  "$NAME^M"
         sleep 1
