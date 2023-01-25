@@ -11,7 +11,7 @@ fi
 
 if [ -z $DATA ]; then
    clear
-   touch data.txt
+   touch ~/SubSpace/data.txt
       
    echo "-----------------------------------------------------------------------------"
    read -p "Name your node: " NAME
