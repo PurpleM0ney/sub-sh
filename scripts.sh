@@ -40,8 +40,16 @@ if [ -f ./latest ]; then
    #Нода не устанолвена
    if [ -z $DAEMON_VERSION ]; then
    
-   sudo apt update
-   sudo apt install -y jq curl unzip wget sudo screen
+   if type apt-get; then
+      if type sudo; then break; else apt install sudo; fi
+         sudo apt update
+         sudo apt install -y jq curl unzip wget sudo
+      elif type yum; then
+         sudo yum check-update
+         sudo yum install epel-release -y
+         sudo yum update -y
+         sudo yum install -y jq curl unzip wget
+    fi
    
    FILE_NAME=$LATEST_TAG
    curl -JL -o ./$FILE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "./latest")
