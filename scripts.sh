@@ -6,7 +6,7 @@ DATA=$(ls ~/SubSpace/ | grep data)
 NODE=$(ls ~/SubSpace/ | grep NODE)
 
 if [ -z $NODE ]; then
-   mkdir NODE
+   mkdir ~/SubSpace/NODE
 fi
 
 if [ -z $DATA ]; then
