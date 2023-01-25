@@ -1,6 +1,6 @@
 #!/bin/bash
 
-   DATA=$(ls ~/SubSpace/ | grep data.txt)
+   DATA=$(ls /root/SubSpace/ | grep data.txt)
    if [ -z $DATA ]; then
       cat > data.txt
       mv data.txt /SubSpace/
