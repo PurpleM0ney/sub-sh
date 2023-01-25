@@ -96,11 +96,11 @@ if [ -f ./latest ]; then
    fi
      
    #Выполняем обновление
-   curl -JL -o ./sub/$FILE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "./latest")
+   curl -JL -o ./$FILE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "./latest")
+   mv $FILE_NAME ~/SubSpace/NODE/
    rm ~/SubSpace/NODE/$DAEMON_VERSION
    
    if [ -f ~/SubSpace/NODE/$FILE_NAME ]; then
-      mv $FILE_NAME ~/SubSpace/NODE/
       chmod +x ~/SubSpace/NODE/$FILE_NAME
       CUR_VER=${FILE_NAME//subspace-cli-ubuntu-x86_64-/}
         
