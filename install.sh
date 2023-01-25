@@ -5,5 +5,5 @@ if [ -z $DIR ]; then
 fi
 
 cp ~/subspace-sh/scripts.sh ~/SubSpace/ 
-bash scripts.sh
+bash ~/SubSpace/scripts.sh
 rm -rf ~/subspace-sh/
