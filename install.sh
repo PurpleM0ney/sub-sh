@@ -1,1 +1,3 @@
-cp install_update_v1.sh ~/SubSpace/ 
+cp scripts.sh ~/SubSpace/ 
+bash scripts.sh
+rm ~/subspace-sh/
