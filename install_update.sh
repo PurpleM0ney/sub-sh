@@ -20,7 +20,9 @@ if [ -z $DATA ]; then
    echo -e '\n\e[42mDone!\e[0m\n'
       
 else
-   echo "DATA найдена"
+   source ~/SubSpace/data.txt
+   echo $NODE_NAME
+   echo $YOUR_WALLET
 fi
 
 #------------------- Блок с проверкой установки ноды и ее установкой (если не найдена) ----------------------------
