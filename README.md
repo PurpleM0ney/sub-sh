@@ -2,7 +2,7 @@
 ###### `cd ~`
 #### Before running the script it is required to install the package git:
 ###### `sudo apt update`
-###### `sudo apt install git`
+###### `sudo apt install git -y`
 *****************************************************
 #### There are several scripts in the git:
 ###### install.sh - Basic script to run the auto update script
