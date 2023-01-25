@@ -32,8 +32,9 @@ fi
 #------------------- Блок с проверкой установки ноды и ее установкой (если не найдена) ----------------------------
 
 wget -P ~/SubSpace/ https://api.github.com/repos/subspace/subspace-cli/releases/latest
-if [ -f ./latest ]; then
-   LATEST_TAG=$(jq --raw-output '.tag_name' "./latest")
+if [ -f ~/SubSpace/./latest ]; then
+   LATEST_TAG=$(jq --raw-output '.tag_name' "~/SubSpace/./latest")
+   echo $LATEST_TAG
    DAEMON_VERSION=$(ls ~/SubSpace/NODE/)
    LATEST_TAG=subspace-cli-ubuntu-x86_64-$LATEST_TAG
    
