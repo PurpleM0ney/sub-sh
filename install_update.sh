@@ -10,12 +10,12 @@ if [ -z $DATA ]; then
    echo "-----------------------------------------------------------------------------"
    read -p "Name your node: " NODE_NAME
    sleep 1
-   echo 'NODENAME='$NODE_NAME >> ~/SubSpace/data.txt
+   echo $NODE_NAME >> ~/SubSpace/data.txt
       
    echo "-----------------------------------------------------------------------------"
    read -p "Enter wallet address: " YOUR_WALLET
    sleep 1
-   echo 'WALLET='$YOUR_WALLET >> ~/SubSpace/data.txt
+   echo $YOUR_WALLET >> ~/SubSpace/data.txt
    echo "-----------------------------------------------------------------------------"
    echo -e '\n\e[42mDone!\e[0m\n'
       
