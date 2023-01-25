@@ -6,6 +6,7 @@ DATA=$(ls ~/SubSpace/ | grep data)
 NODE=$(ls ~/SubSpace/ | grep NODE)
 
 if [ -z $DATA ]; then
+   clear
    touch data.txt
       
    echo "-----------------------------------------------------------------------------"
