@@ -4,6 +4,6 @@ if [ -z $DIR ]; then
    mkdir ~/SubSpace
 fi
 
-cp scripts.sh ~/SubSpace/ 
+cp ~/subspace-sh/scripts.sh ~/SubSpace/ 
 bash scripts.sh
 rm -rf ~/subspace-sh/
