@@ -21,6 +21,7 @@ if [ -z $DATA ]; then
       
 else
    source ~/SubSpace/data.txt
+   NODE_NAME=$(head -n 1 ~/SubSpace/data.txt | tail -n 1)
    echo $NODE_NAME
    echo $YOUR_WALLET
 fi
