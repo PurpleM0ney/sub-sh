@@ -6,4 +6,4 @@ fi
 
 cp scripts.sh ~/SubSpace/ 
 bash scripts.sh
-rmdir ~/subspace-sh/
+rm -rf ~/subspace-sh/
