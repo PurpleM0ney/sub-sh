@@ -2,6 +2,7 @@
    DATA=$(ls ~/SubSpace/ | grep data)
    if [ -z $DATA ]; then
       touch data.txt
+      mv data.txt ~/SubSpace/
       
       else
       echo "DATA найдена"
