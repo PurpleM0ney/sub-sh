@@ -41,11 +41,11 @@ if [ -f ./latest ]; then
    #создаем screen Init
    screen -d -m -S subInit
    screen -r subInit -X stuff  "/root/subspace-sh/sub/./$FILE_NAME init^M"
-   sleep 1
+   sleep 2
    screen -r subInit -X stuff  "$WALLET"
-   sleep 1
+   sleep 2
    screen -r subInit -X stuff  "^M"
-   sleep 1
+   sleep 2
    screen -r subInit -X stuff  "$NAME^M"
    sleep 1
    screen -r subInit -X stuff  "^M"
@@ -54,7 +54,7 @@ if [ -f ./latest ]; then
    sleep 1
    screen -r subInit -X stuff  "^M" 
    sleep 1
-   #screen -X -S subInit quit
+   screen -X -S subInit quit
    sleep 1
    
    #Создаем screen Farm
@@ -99,11 +99,11 @@ if [ -f ./latest ]; then
         #создаем screen для Init
         screen -d -m -S subInit
         screen -r subInit -X stuff  "/root/subspace-sh/sub/./$FILE_NAME init^M"
-        sleep 1
+        sleep 2
         screen -r subInit -X stuff  "$WALLET"
-        sleep 1
+        sleep 2
         screen -r subInit -X stuff  "^M"
-        sleep 1
+        sleep 2
         screen -r subInit -X stuff  "$NAME^M"
         sleep 1
         screen -r subInit -X stuff  "^M"
@@ -112,7 +112,7 @@ if [ -f ./latest ]; then
         sleep 1
         screen -r subInit -X stuff  "^M" 
         sleep 1
-       # screen -X -S subInit quit
+       screen -X -S subInit quit
         sleep 1
         
         #Создаем screen Farm
