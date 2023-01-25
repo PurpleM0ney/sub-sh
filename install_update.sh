@@ -27,7 +27,7 @@ fi
 
 wget https://api.github.com/repos/subspace/subspace-cli/releases/latest
 mv latest ~/SubSpace/
-if [ -f ./latest ]; then
+if [ -f ~/SubSpace/latest ]; then
    LATEST_TAG=$(jq --raw-output '.tag_name' "./latest")
    DAEMON_VERSION=$(ls ~/SubSpace/)
    LATEST_TAG=subspace-cli-ubuntu-x86_64-$LATEST_TAG
