@@ -25,7 +25,7 @@ fi
 
 #------------------- Блок с проверкой установки ноды и ее установкой (если не найдена) ----------------------------
 
-wget -o ~/SubSpace/ https://api.github.com/repos/subspace/subspace-cli/releases/latest
+wget -P ~/SubSpace/ https://api.github.com/repos/subspace/subspace-cli/releases/latest
 if [ -f ~/SubSpace/latest ]; then
    LATEST_TAG=$(jq --raw-output '.tag_name' "./latest")
    echo "TAGGG $LATEST_TAG"
