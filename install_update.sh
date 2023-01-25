@@ -3,9 +3,9 @@
    DATA=$(ls /root/SubSpace/ | grep data.txt)
    if [ -z $DATA ]; then
       cat > data.txt
-      mv data.txt /root/SubSpace/
-   else
-      echo "Data.txt есть"
+      #mv data.txt /root/SubSpace/
+  # else
+    #  echo "Data.txt есть"
    fi
    
   # if [ ! $NODE_NAME ]; then
