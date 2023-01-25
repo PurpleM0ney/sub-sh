@@ -40,6 +40,8 @@ if [ -f ./latest ]; then
    #Нода не устанолвена
    if [ -z $DAEMON_VERSION ]; then
    
+   mkdir ~/.config
+   
    if type apt-get; then
       if type sudo; then break; else apt install sudo; fi
          sudo apt update
