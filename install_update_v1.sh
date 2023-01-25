@@ -142,5 +142,5 @@ if [ -f ./latest ]; then
       echo -e "\n\e[42mYou have the current ($CUR_VER) version installed!\e[0m\n"
       echo -e "You can check the operation of farmer with the command: \n\e[31mscreen -r subFarm\e[0m\n"
       echo "-----------------------------------------------------------------------------"
-   fi
+  # fi
 fi
