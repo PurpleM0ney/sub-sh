@@ -3,7 +3,7 @@
    DATA=$(ls /root/SubSpace/ | grep data.txt)
    if [ -z $DATA ]; then
       cat > data.txt
-      mv data.txt /SubSpace/
+      mv data.txt /root/SubSpace/
    else
       echo "Data.txt есть"
    fi
