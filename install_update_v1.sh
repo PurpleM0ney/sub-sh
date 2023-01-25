@@ -1,8 +1,9 @@
 #!/bin/bash
 
-#------------------- Блок проверкой наличия data.txt ----------------------------
+#------------------- Блок проверкой наличия data.txt и папки с нодой ----------------------------
 
 DATA=$(ls ~/SubSpace/ | grep data)
+NODE=$(ls ~/SubSpace/ | grep NODE)
 
 if [ -z $DATA ]; then
    touch data.txt
@@ -22,6 +23,10 @@ if [ -z $DATA ]; then
       
 else
    source ~/SubSpace/data.txt
+fi
+
+if [ -z $NODE ]; then
+   mkdir NODE
 fi
 
 #------------------- Блок с проверкой установки ноды и ее установкой (если не найдена) ----------------------------
