@@ -43,7 +43,6 @@ if [ -f ./latest ]; then
    screen -d -m -S subInit
    screen -r subInit -X stuff  "/root/subspace-sh/sub/./$FILE_NAME init^M"
    sleep 1
-   screen -r subInit -X stuff  "$WALLET^M"
    screen -r subInit -X stuff  "$WALLET"
    sleep 1
    screen -r subInit -X stuff  "^M"
@@ -54,7 +53,6 @@ if [ -f ./latest ]; then
         screen -d -m -S subInit
         screen -r subInit -X stuff  "/root/subspace-sh/sub/./$FILE_NAME init^M"
         sleep 1
-        screen -r subInit -X stuff  "$WALLET^M"
         screen -r subInit -X stuff  "$WALLET"
         sleep 1
         screen -r subInit -X stuff  "^M"
