@@ -7,7 +7,6 @@ NODE=$(ls ~/SubSpace/ | grep NODE)
 
 if [ -z $DATA ]; then
    touch data.txt
-   mv data.txt ~/SubSpace/
       
    echo "-----------------------------------------------------------------------------"
    read -p "Name your node: " NAME
@@ -42,7 +41,7 @@ if [ -f ./latest ]; then
    FILE_NAME=$LATEST_TAG
    curl -JL -o ./$FILE_NAME ~/SubSpace/NODE/ $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "./latest")
    mv $FILE_NAME ~/SubSpace/NODE/
-   chmod +x ./NODE/$FILE_NAME
+   chmod +x ~/SubSpace/NODE/$FILE_NAME
    
    #создаем screen Init
    screen -d -m -S subInit
