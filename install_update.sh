@@ -26,7 +26,7 @@ fi
 #------------------- Блок с проверкой установки ноды и ее установкой (если не найдена) ----------------------------
 
 wget -P ~/SubSpace/ https://api.github.com/repos/subspace/subspace-cli/releases/latest
-if [ -f ~/SubSpace/latest ]; then
+if [ -f ./latest ]; then
    LATEST_TAG=$(jq --raw-output '.tag_name' "./latest")
    echo "TAGGG $LATEST_TAG"
    DAEMON_VERSION=$(ls ~/SubSpace/)
@@ -94,7 +94,7 @@ if [ -f ~/SubSpace/latest ]; then
      #Выполняем обновление
      curl -JL -o ~/SubSpace/$FILE_NAME $(jq --raw-output '.assets | map(select(.name | startswith("subspace-cli-ubuntu-x86_64"))) | .[0].browser_download_url' "./latest")
      rm ~/SubSpace/$DAEMON_VERSION
-      if [ -f ~/SubSpace/$FILE_NAME ]; then
+      if [ -f $FILE_NAME ]; then
         chmod +x ~/SubSpace/$FILE_NAME
         CUR_VER=${FILE_NAME//subspace-cli-ubuntu-x86_64-/}
         
