@@ -4,13 +4,16 @@
       touch data.txt
       mv data.txt ~/SubSpace/
       
-	   read -p "Дайте имя вашей ноде: " NODE_NAME
+      echo "-----------------------------------------------------------------------------"
+      read -p "Name your node: " NODE_NAME
       sleep 1
       echo 'NODENAME='$NODE_NAME >> ~/SubSpace/data.txt
       
-	   read -p "Введите адрес кошелька : " YOUR_WALLET
+      echo "-----------------------------------------------------------------------------"
+      read -p "Enter wallet address: " YOUR_WALLET
       sleep 1
-      echo 'export WALLET='$YOUR_WALLET >> ~/SubSpace/data.txt
+      echo 'WALLET='$YOUR_WALLET >> ~/SubSpace/data.txt
+      echo "-----------------------------------------------------------------------------"
       
       else
       echo "DATA найдена"
