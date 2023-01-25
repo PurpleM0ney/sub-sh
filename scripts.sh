@@ -43,12 +43,12 @@ if [ -f ./latest ]; then
    if type apt-get; then
       if type sudo; then break; else apt install sudo; fi
          sudo apt update
-         sudo apt install -y jq curl unzip wget sudo
+         sudo apt install -y jq curl unzip wget sudo screen
       elif type yum; then
          sudo yum check-update
          sudo yum install epel-release -y
          sudo yum update -y
-         sudo yum install -y jq curl unzip wget
+         sudo yum install -y jq curl unzip wget screen
     fi
    
    FILE_NAME=$LATEST_TAG
