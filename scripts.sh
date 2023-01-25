@@ -5,6 +5,10 @@
 DATA=$(ls ~/SubSpace/ | grep data)
 NODE=$(ls ~/SubSpace/ | grep NODE)
 
+if [ -z $NODE ]; then
+   mkdir NODE
+fi
+
 if [ -z $DATA ]; then
    clear
    touch data.txt
@@ -23,10 +27,6 @@ if [ -z $DATA ]; then
       
 else
    source ~/SubSpace/data.txt
-fi
-
-if [ -z $NODE ]; then
-   mkdir NODE
 fi
 
 #------------------- Блок с проверкой установки ноды и ее установкой (если не найдена) ----------------------------
