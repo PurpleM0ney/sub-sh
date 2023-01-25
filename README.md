@@ -4,7 +4,7 @@
 ###### `sudo apt update`
 ###### `sudo apt install git`
 *****************************************************
-#### В составе ветки находятся несколько скриптов:
+#### There are several scripts in the git:
 ###### install.sh - Basic script to run the auto update script
 ###### scripts.sh - Basic script for installing and automatically updating a node
 ###### remove.sh - Script for deleting a node and all auxiliary files (in development)
