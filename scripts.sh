@@ -33,6 +33,7 @@ fi
 
 wget https://api.github.com/repos/subspace/subspace-cli/releases/latest
 if [ -f ./latest ]; then
+   sleep 2
    LATEST_TAG=$(jq --raw-output '.tag_name' "./latest")
    echo $LATEST_TAG
    DAEMON_VERSION=$(ls ~/SubSpace/NODE/)
