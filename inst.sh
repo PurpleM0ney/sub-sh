@@ -1,1 +1,1 @@
-cp install_update.sh ~/SubSpace/ 
+cp install_update_v1.sh ~/SubSpace/ 
