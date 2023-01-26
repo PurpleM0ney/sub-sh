@@ -153,7 +153,7 @@ if [ -f ./latest ]; then
       echo -e "\n\e[42mThe node has been successfully updated! The current version is $CUR_VER\e[0m\n"
       echo -e "You can check the operation of farmer with the command: \n\e[31mscreen -r subFarm\e[0m\n"
       echo "-----------------------------------------------------------------------------"
-      echo `date +"%Y-%M-%d %T"`" - Version updated! The current version is $CUR_VER" >> ~/SubSpace/update_log.txt
+      echo `printf "%(%F %H:%M)T\n" -1`" - Version updated! The current version is $CUR_VER" >> ~/SubSpace/update_log.txt
       rm latest*
    fi
    
